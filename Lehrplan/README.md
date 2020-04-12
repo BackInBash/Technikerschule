@@ -5,7 +5,7 @@ Eine Zusammenfassung aller im Lehrplan aufgelisteten Punkte.
 Schuljahr 1:
 
 - Technische Mathematik
-    - Algebraische und geometrische Grundlagen
+    - [Algebraische und geometrische Grundlagen](/Lehrplan/Jahr%201/Technische%20Mathematik/Algebraische%20und%20geometrische%20Grundlagen.md)
     - Eigenschaften von Funktionen und ihrer Schaubilder
 untersuchen sowie zugehörige Gleichungen lösen
     - Differential- und Integralrechnung anwenden
