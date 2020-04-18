@@ -19,7 +19,7 @@ untersuchen sowie zugehörige Gleichungen lösen](/Lehrplan/Jahr%201/Technische%
     - [Computersysteme installieren und administrieren](/Lehrplan/Jahr%201/Computersysteme/Computersysteme%20installieren%20und%20administrieren.md)
 - Softwareentwicklung
     - [Programmierumgebung einsetzen](/Lehrplan/Jahr%201/Softwareentwicklung/Programmierumgebung%20einsetzen.md)
-    - [Grundlegende Sprachelemente einsetzen](/Lehrplan/Jahr%201\Softwareentwicklung\Grundlegende%20Sprachelemente%20einsetzen.md)
+    - [Grundlegende Sprachelemente einsetzen](/Lehrplan/Jahr%201/Softwareentwicklung/Grundlegende%20Sprachelemente%20einsetzen.md)
    - [Einfache Problemstellungen mit objektorientierter Programmierung lösen](/Lehrplan/Jahr%201/Softwareentwicklung/Einfache%20Problemstellungen%20mit%20objektorientierter%20Programmierung%20lösen.md)
 - Netze
     - [Grundlegende Prinzipien und Verfahren der Netzwerktechnik analysieren](/Lehrplan/Jahr%201/Netze/Grundlegende%20Prinzipien%20und%20Verfahren%20der%20Netzwerktechnik%20analysieren.md)
