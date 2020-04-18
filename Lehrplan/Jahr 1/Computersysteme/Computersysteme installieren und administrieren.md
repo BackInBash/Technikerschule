@@ -9,7 +9,7 @@
 + Multitasking, Prozesse, Threads
 
 ## Betriebssysteme installieren
-+Hardwareanforderungen
++ Hardwareanforderungen
 + Bootvorgang
 + Dateisysteme
 + Datenträgerverwaltung
