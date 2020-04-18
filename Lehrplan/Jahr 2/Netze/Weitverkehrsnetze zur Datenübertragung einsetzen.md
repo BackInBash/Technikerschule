@@ -4,6 +4,7 @@
 
 
 ## Anbindungen an Weitverkehrsnetze planen und einrichten
-Protokolle
-Internetanbindung
-Internet, Intranet
++ Protokolle
++ Internetanbindung
++ Internet
++ Intranet

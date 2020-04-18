@@ -1,13 +1,13 @@
 # Datenbanken administrieren
 
 ## Datenbanken einrichten
-Installation und Konfiguration
-Benutzerverwaltung
-Sicherheitsaspekte
++ Installation und Konfiguration
++ Benutzerverwaltung
++ Sicherheitsaspekte
 
 ## Daten sichern und replizieren
-Backup und Recovery
++ Backup und Recovery
 
 ## Datenschutzaspekte beschreiben
-Datenschutzgesetze
-Organisatorische und technische Umsetzung
++ Datenschutzgesetze
++ Organisatorische und technische Umsetzung

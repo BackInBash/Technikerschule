@@ -1,7 +1,7 @@
 # Grundlegende Sprachelemente einsetzen
 
 ## Grundlegende Sprachelemente anwenden
-Datentypen
-Kontrollstrukturen
-Felder
-Aufzählung
++ Datentypen
++ Kontrollstrukturen
++ Felder
++ Aufzählung

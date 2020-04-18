@@ -1,20 +1,20 @@
 # Anwendungen programmieren
 
 ## Dateien und Datenströme verwenden
-Kommunikationskanäle
++ Kommunikationskanäle
 
 ## Multithreading anwenden
-Threads
-Prioritäten
-Synchronisation
++ Threads
++ Prioritäten
++ Synchronisation
 
 ## Verteilte Anwendungen programmieren
-Client-Server Prinzip
-Datenbankanwendung
-Socket-Programmierung
++ Client-Server Prinzip
++ Datenbankanwendung
++ Socket-Programmierung
 
 ## Software testen und ausliefern
-Komponententest
-Integrationstest
-Abnahmetest
-Dokumentation
++ Komponententest
++ Integrationstest
++ Abnahmetest
++ Dokumentation

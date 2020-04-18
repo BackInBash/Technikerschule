@@ -3,12 +3,12 @@
 ## Themen- und Aufgabenstellung analysieren, präzisieren und dokumentieren
 
 ## Projektplanung entsprechend gegebener Rahmenvorgaben erstellen
-Projektmanagement
++ Projektmanagement
 
 ## Projekte selbstorganisiert unter Einbeziehung aller Projektbeteiligten durchführen
 
 ## Projekte entsprechend gegebener Rahmenvorgaben dokumentieren
-Projektdokumentation
++ Projektdokumentation
 
 ## Projekte einem fachkundigen Publikum präsentieren
-Präsentation
++ Präsentation
