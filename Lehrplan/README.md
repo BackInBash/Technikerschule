@@ -1,6 +1,8 @@
 # Lehrplan
 
 Eine Zusammenfassung aller im Lehrplan aufgelisteten Punkte.
+Dies ist ausschließlich eine Zusammenfassung der im Lehrplan befindlichen Themen.
+Alle Vorbereitungen / und anschließenden Aufgaben leigen an anderer Stelle.
 
 Schuljahr 1:
 
