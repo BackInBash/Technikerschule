@@ -1,10 +1,10 @@
 # Grundlegende Prinzipien und Verfahren der Netzwerktechnik analysieren
 
-## Physikalische Grundlagen und Kenngrößen von Übertragungsmedien beschreiben
+### Physikalische Grundlagen und Kenngrößen von Übertragungsmedien beschreiben
 + Leitungen
 + Funkübertragung
 
-## Typische Netzwerkeinsatzgebiete vergleichen und deren spezielle Anforderungen unterscheiden
+### Typische Netzwerkeinsatzgebiete vergleichen und deren spezielle Anforderungen unterscheiden
 + Client-Server
 + Peer-to-Peer
 + Kommunikationsanwendungen für:
@@ -13,7 +13,7 @@
     + Bild
     + Dateien
 
-## Protokolle und Komponenten anhand von Strukturen und Modellen zuordnen
+### Protokolle und Komponenten anhand von Strukturen und Modellen zuordnen
 + Übertragungsmedien, Kenndaten
 + Aktive Netzwerkkomponenten
 + Schnittstellen

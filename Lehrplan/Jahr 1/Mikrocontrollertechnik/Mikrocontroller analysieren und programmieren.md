@@ -1,11 +1,11 @@
 # Mikrocontroller analysieren und programmieren
 
-## Mikrocontroller in Betrieb nehmen
+### Mikrocontroller in Betrieb nehmen
 + Aufbau, Komponenten
 + Elektr. Eigenschaften
 + Inbetriebnahme 
 
-## Mikrocontroller programmieren
+### Mikrocontroller programmieren
 + Entwicklungsumgebung, Debugging,
 + Programmierschnittstellen
 + Maschinennahe Programmierung

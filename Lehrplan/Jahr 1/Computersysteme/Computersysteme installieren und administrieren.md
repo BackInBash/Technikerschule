@@ -1,6 +1,6 @@
 # Computersysteme installieren und administrieren
 
-## Grundbegriffe von Computersystemen erläutern
+### Grundbegriffe von Computersystemen erläutern
 + Aufgaben und Eigenschaften von Betriebssystemen
 + Hardwarekomponenten
 + Firmware
@@ -8,7 +8,7 @@
 + Multiuserfähigkeit
 + Multitasking, Prozesse, Threads
 
-## Betriebssysteme installieren
+### Betriebssysteme installieren
 + Hardwareanforderungen
 + Bootvorgang
 + Dateisysteme
@@ -17,14 +17,14 @@
 + Systemprogramme
 + Softwaremanagement
 
-## Betriebssysteme verwalten
+### Betriebssysteme verwalten
 + Werkzeuge
 + Skripte
 + Lokale Benutzerverwaltung und Rechte
 
-## Verfügbarkeit sicherstellen
+### Verfügbarkeit sicherstellen
 + Backupstrategien
 + Fehlertoleranz, Leistungssteigerung
 + USV
 
-## Einfache Netzwerkdienste einrichten
+### Einfache Netzwerkdienste einrichten

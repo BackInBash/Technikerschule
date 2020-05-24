@@ -1,6 +1,6 @@
 # Grundlegende Sprachelemente einsetzen
 
-## Grundlegende Sprachelemente anwenden
+### Grundlegende Sprachelemente anwenden
 + Datentypen
 + Kontrollstrukturen
 + Felder

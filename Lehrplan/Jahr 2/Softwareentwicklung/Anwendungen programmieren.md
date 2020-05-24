@@ -1,19 +1,19 @@
 # Anwendungen programmieren
 
-## Dateien und Datenströme verwenden
+### Dateien und Datenströme verwenden
 + Kommunikationskanäle
 
-## Multithreading anwenden
+### Multithreading anwenden
 + Threads
 + Prioritäten
 + Synchronisation
 
-## Verteilte Anwendungen programmieren
+### Verteilte Anwendungen programmieren
 + Client-Server Prinzip
 + Datenbankanwendung
 + Socket-Programmierung
 
-## Software testen und ausliefern
+### Software testen und ausliefern
 + Komponententest
 + Integrationstest
 + Abnahmetest

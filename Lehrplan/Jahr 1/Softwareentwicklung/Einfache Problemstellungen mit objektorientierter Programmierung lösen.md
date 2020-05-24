@@ -1,6 +1,6 @@
 # Einfache Problemstellungen mit objektorientierter Programmierung lösen
 
-## Grundbegriffe der objektorientierten Programmierung anwenden
+### Grundbegriffe der objektorientierten Programmierung anwenden
 + Klassen
 + Objekte
 + Eigenschaften
@@ -13,13 +13,13 @@
 + Polymorphie
 + Methodik des Klassenentwurfs
 
-## Software spezifizieren und dokumentieren
+### Software spezifizieren und dokumentieren
 + Unified Modelling Language
 
-## Fehler behandeln
+### Fehler behandeln
 + Ausnahmen
 
-## Grafische Benutzeroberflächen programmieren
+### Grafische Benutzeroberflächen programmieren
 + Grafikkomponenten
 + Layout
 + Ergonomie

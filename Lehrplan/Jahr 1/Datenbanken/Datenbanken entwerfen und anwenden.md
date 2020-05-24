@@ -1,21 +1,21 @@
 # Datenbanken entwerfen und anwenden
 
-## Datenbankkonzepte erläutern
+### Datenbankkonzepte erläutern
 + Datenunabhängigkeit
 + Architektur einer Datenbank
 + Datenmodelle
 
-## Datenmodelle analysieren und entwickeln
+### Datenmodelle analysieren und entwickeln
 + Entity-Relationship-Modell
 + Normalformen
 
-## Relationale Datenbanken einsetzen
+### Relationale Datenbanken einsetzen
 + Sprachelemente zur Datenmanipulation
 + Joins
 + Unterabfragen
 + Gruppierungen
 
-## Fortgeschrittene Datenbankkonzepte umsetzen
+### Fortgeschrittene Datenbankkonzepte umsetzen
 + Sichten auf Daten
 + Gespeicherte Prozeduren
 + Ereignisorientierte Datenbankprogrammierung

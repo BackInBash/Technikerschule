@@ -1,6 +1,6 @@
 # Erweiterte objektorientierte Konzepte analysieren
 
-## Entwurfsmuster unterscheiden und exemplarisch anwenden
+### Entwurfsmuster unterscheiden und exemplarisch anwenden
 + Strukturmuster
 + Erzeugungsmuster
 + Verhaltensmuster

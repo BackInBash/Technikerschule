@@ -1,6 +1,6 @@
 # Programmierumgebung einsetzen
 
-## Eine Programmierumgebung installieren und anwenden
+### Eine Programmierumgebung installieren und anwenden
 + Compiler
 + Interpreter
 + Debugger
