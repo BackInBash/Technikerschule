@@ -6,7 +6,7 @@ Dieses Repository ist die Zentrale Anlaufstelle für alle Lehrinhalte.
 + **[Jahr 1](/Jahr%201/README.md)**
 
 ### Ausbildung zum:
- **Staatlich geprüften Infomationstechniker**
+ **Staatlich geprüften Informationstechniker**
 
 ### Dauer
 **2 Jahre (in Vollzeit)** 09/2020 - 08/2022
