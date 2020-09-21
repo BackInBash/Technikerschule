@@ -3,7 +3,7 @@ Dieses Repository ist die Zentrale Anlaufstelle für alle Lehrinhalte.
 
 ## Inhalte:
 + **[Allgemeiner Lehrplan](/Lehrplan/README.md)**
-+ **[Jahr 1](/Jahr%201/README.md)**
++ **[Jahr 1](/Jahr%201)**
 
 ### Ausbildung zum:
  **Staatlich geprüften Informationstechniker**
