@@ -3,4 +3,18 @@
 
 ## Rechenoperationen
 - Addition
+
+![](addition.png)
+
+abc ∈ ℕ
+
+Kommutativ Gesetz (Summanten können getauscht werden)
+
 - Subtraktion
+
+![](subtraktion.png)
+
+abc ∈ ℤ
+
+Kein Kommutativ Gesetz
+a-b ≠ b-a
