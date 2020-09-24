@@ -12,4 +12,4 @@
 
 + **[Potenzen](/Jahr%201/M/Potenzen.md)**
 + **[Operationen und ihre Umkehroperationen](/Jahr%201/M/Operationen%20und%20ihre%20Umkehroperationen.md)**
-+ **[Mathematische Terme](/Jahr%201/M/Mathematische%20Terme.md)**
++ **[Mathematische Terme](/Jahr%201/M/Mathematische%20Terme.ipynb)**
