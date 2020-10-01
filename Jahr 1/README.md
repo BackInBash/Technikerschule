@@ -5,3 +5,5 @@
 **M** Technische Mathematik
 
 **DB** Datenbanken
+
+**NE** Netze
