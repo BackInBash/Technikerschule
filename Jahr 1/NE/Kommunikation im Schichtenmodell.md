@@ -24,3 +24,7 @@
 | Transport | TCP
 | Internet | IP
 | Network | Ethernet
+
+<br/>
+
+![TCP IP Modell](https://lh3.googleusercontent.com/proxy/GXvZTMCNZdb1EkdhzOYhinfqMtmXpnD5Fi1C9LaqJgYDcAL5Qfdl-M8hkW-Nka-TNYJRLhR8gl7vaP0vRDBaPIVyB7eg1g3ZagLk)
