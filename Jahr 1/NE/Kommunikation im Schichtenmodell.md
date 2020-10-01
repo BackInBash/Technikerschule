@@ -12,6 +12,8 @@
 | L2 | Data-Link | 
 | L1 | Physical |
 
+![OSI Modell](https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/ISO-OSI-7-Schichten-Modell%28in_Deutsch%29.svg/600px-ISO-OSI-7-Schichten-Modell%28in_Deutsch%29.svg.png)
+
 <br/>
 
 ## TCP IP Modell
