@@ -7,3 +7,5 @@
 **DB** Datenbanken
 
 **NE** Netze
+
+**CS** Computersysteme
