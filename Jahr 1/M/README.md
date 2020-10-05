@@ -14,3 +14,4 @@
 + **[Operationen und ihre Umkehroperationen](/Jahr%201/M/Terme/Operationen%20und%20ihre%20Umkehroperationen.ipynb)**
 + **[Mathematische Terme](/Jahr%201/M/Terme/Mathematische%20Terme.ipynb)**
 + **[Binomische Formeln](/Jahr%201/M/Terme/Binomische%20Formel.ipynb)**
++ **[Bruchterme](/Jahr%201/M/Terme/Bruchterme.ipynb)**
