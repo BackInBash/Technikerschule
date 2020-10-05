@@ -2,13 +2,13 @@
 
 ## Kupfer
 
-|Bezeichnung|Name
-|--|--|--|
-|TP| Twisted Pair oder Sternvierer
-|U|ungeschiemt
-|F|folienschirm
-|S|Geflechtschirm
-|SF|Folien- und Geflechtschirm
+Bezeichnung|Name
+|--|--|
+TP| Twisted Pair oder Sternvierer
+U|ungeschiemt
+F|folienschirm
+S|Geflechtschirm
+SF|Folien- und Geflechtschirm
 
 <br/>
 
