@@ -38,7 +38,7 @@ Bezeichnung|Typ|
 
 <br>
 
-[Datenblatt Übertragungsmedien](/Jahr%20/NE/Datenblatt_Übertragungsmedien.pdf)
+[Datenblatt Übertragungsmedien](/Jahr%201/NE/Datenblatt_Übertragungsmedien.pdf)
 
 ### NEXT (Near End Cross Talk)
 ### FEXT (Far End Cross Talk)
@@ -46,7 +46,7 @@ Bezeichnung|Typ|
 
 <br>
 
-[Cross Talk](/Jahr%20/NE/CrossTalk.pdf)
+[Cross Talk](/Jahr%201/NE/CrossTalk.pdf)
 
 **N = Next**
 
