@@ -5,6 +5,21 @@ Dieses Repository ist die Zentrale Anlaufstelle für alle Lehrinhalte.
 + **[Allgemeiner Lehrplan](/Lehrplan/README.md)**
 + **[Jahr 1](/Jahr%201)**
 
+## Unterichtsfächer
+
+### Jahr 1:
++ **Technische Mathematik**
++ **Computer Systeme**
++ **Netze**
++ **Software Entwicklung**
++ **Datenbanken**
+
+### Jahr 2:
++ **Computer Systeme**
++ **Netze**
++ **Software Entwicklung**
++ **Datenbanken**
+
 ### Ausbildung zum:
  **Staatlich geprüften Informationstechniker**
 
