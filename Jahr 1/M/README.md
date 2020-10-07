@@ -15,3 +15,4 @@
 + **[Mathematische Terme](/Jahr%201/M/Terme/Mathematische%20Terme.ipynb)**
 + **[Binomische Formeln](/Jahr%201/M/Terme/Binomische%20Formel.ipynb)**
 + **[Bruchterme](/Jahr%201/M/Terme/Bruchterme.ipynb)**
++ **[Prinfaktoren](/Jahr%201/M/Terme/Primfaktoren.ipynb)**
