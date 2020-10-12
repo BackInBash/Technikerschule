@@ -17,7 +17,9 @@
 
 ### Gleichungen
 + **[Gleichungen](/Jahr%201/M/Gleichungen/Gleichungen.md)**
-+ **[Potenzen](/Jahr%201/M/Gleichungen/Linearegleichungssyteme.md)**
++ **[Linearegleichungssysteme](/Jahr%201/M/Gleichungen/Linearegleichungssyteme.md)**
+
+<br/>
 
 + **[Potenzen](/Jahr%201/M/Zahlenmengen/Potenzen.md)**
 + **[Operationen und ihre Umkehroperationen](/Jahr%201/M/Terme/Operationen%20und%20ihre%20Umkehroperationen.ipynb)**
