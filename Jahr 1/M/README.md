@@ -16,8 +16,8 @@
 + **[Bruchterme](/Jahr%201/M/Terme/Bruchterme.ipynb)**
 
 ### Gleichungen
-+ **[Gleichungen](/Jahr%201/M/Gleichungen/Gleichungen.md)**
-+ **[Linearegleichungssysteme](/Jahr%201/M/Gleichungen/Linearegleichungssyteme.md)**
++ **[Gleichungen](/Jahr%201/M/Gleichungen/Gleichungen.ipynb)**
++ **[Linearegleichungssysteme](/Jahr%201/M/Gleichungen/Linearegleichungssystem.ipynb)**
 
 <br/>
 
