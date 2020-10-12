@@ -1,6 +1,6 @@
 # Übertragungsmedien
 
-## Kupfer
+# Kupfer
 
 Bezeichnung|Name
 |--|--|
@@ -59,5 +59,60 @@ Bezeichnung|Typ|
 Im Deutschen als "Übersprechen" bekannt.
 Beschreibt die gegenseitige beeinflussung von Sende und Empfangsrichtung.
 
-## dB
+### dB
 Verhältniss von Sende und Empfangsleistung
+
+<br/>
+
+# Glasfaser (LWL)
+
+Teurer, aufwändiger zu verlegen bzw. anzuschließen
+Vorteile: Geringere Dämpfung, damit größere Reichweiten, keine EMI/RFI-Störungen (Elektromagnetische Störungen), dünnes Medium
+
+**Einsatzgebiete für LWL**
++ Enterprise-Netze im Backbone zwischen Infrastruktur-Geräten
++ Fiber-to-the-Home (FTTH)
++ Fiber-to-the-Desk (FTTD)
++ Unterseekabel
+
+## Multimode
+
++ LED als Lichtquelle
++ kleinerer Leitungsdurchmesser
++ kostengünstiger als Singlemode
++ Orange
+
+**Einsatzgebiet** Gebäude und in House verkabelung
+
+![Multimode](Multimode.png)
+
+## Singlemode
++ großere Übertragungsstrecke
++ Laser als Lichtquelle
++ großerer Leitungsdurchmesser
++ Gelb
+
+**Einsatzgebiet** In Straßen und Backbone
+
+![Singlemode](Singlemode.png)
+
+# Wireless
+
++ Bietet größte Mobilität
+
+**Einschränkungen bei Wireless:**
++ Abdeckungsgebiet – teils durch Umgebung verringert
++ Interferenzanfälligkeit – teil schon durch Haushaltsgeräte
++ Sicherheit – im Gegensatz zum Kabel nicht klar wo es ankommt
++ Shared Medium – Keine fixe Bandbreite
+
+### Funkstandards:
++ Wi-Fi (IEEE 802.11)
++ Bluetooth (IEEE 802.15)
++ WiMAX (IEEE 802:16)
++ Zigbee (IEEE 802.15.4)
+
+### WLAN-Infrastruktur
++ Wireless Access-Point (AP)
++ Wireless NIC-Adapters
++ Wireless Controller
