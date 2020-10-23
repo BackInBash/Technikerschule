@@ -33,8 +33,17 @@ public class Umrechner {
         double endValue = s.nextDouble();
 
         System.out.println("Meter:      inch:       feet:       yard:");
-        for (double i = startValue; endValue >= i; i++) {
-            System.out.println(i + ":     " + String.format("%1$,.2f", i * 39.37) + ":        " + String.format("%1$,.2f", i * 3.281) + ":        " + String.format("%1$,.2f", i * 1.09) + ":");
+        switch (auswahl) {
+            case 'e':
+                for (double i = startValue; endValue >= i; i++) {
+                    System.out.println(i + ":     " + String.format("%1$,.2f", i * 39.37) + ":        " + String.format("%1$,.2f", i * 3.281) + ":        " + String.format("%1$,.2f", i * 1.09) + ":");
+                }
+                break;
+            case 'm':
+                for (double i = startValue; endValue >= i; i++) {
+                    System.out.println(i + ":     " + String.format("%1$,.2f", i / 39.37) + ":        " + String.format("%1$,.2f", i / 3.281) + ":        " + String.format("%1$,.2f", i / 1.09) + ":");
+                }
+                break;
         }
     }
 }
