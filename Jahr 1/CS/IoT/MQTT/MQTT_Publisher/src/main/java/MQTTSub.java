@@ -40,6 +40,14 @@ public class MQTTSub {
         connAckSingle = (Single<Mqtt5ConnAck>) client.connect();
     }
 
+    public void ConnectwithCreds(String username, String password){
+        client.connectWith()
+                .simpleAuth()
+                .username(username)
+                .password(password.getBytes())
+                .applySimpleAuth();
+    }
+
     public void Disconnect(){
         client.disconnect();
     }

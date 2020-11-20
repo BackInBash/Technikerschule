@@ -12,7 +12,9 @@ public class main {
                 "   --topic     MQTT Topic\n" +
                 "   --ClientID  MQTT Client ID\n" +
                 "   --message   MQTT Message\n" +
-                "   --listening MQTT Listener");
+                "   --listening MQTT Listener\n" +
+                "   --user      MQTT Username\n" +
+                "   --passwd    MQTT Password");
     }
 
     public static void main(String[] args) throws InterruptedException {
@@ -25,9 +27,11 @@ public class main {
         String ClientID = "HeloFromJava";
         String Message = "";
         boolean isListener = false;
+        String user = "";
+        String passwd = "";
 
         // Parse CLI Args
-        for (int i = 0; i < args.length - 1; i++) {
+        for (int i = 0; i < args.length; i++) {
             switch (args[i]) {
                 case "--flood":
                     flood = true;
@@ -49,6 +53,13 @@ public class main {
                     break;
                 case "--listening":
                     isListener = true;
+                    break;
+                case "--user":
+                    user = args[i+1];
+                    break;
+                case "--passwd":
+                    passwd = args[i+1];
+                    break;
             }
         }
 
@@ -65,8 +76,13 @@ public class main {
 
         // Create MQTT Client
         MQTTPub client = new MQTTPub(Server, Port, ClientID);
+
         // Connect to Server
-        client.Connect();
+        if(user.equals("") && passwd.equals("")) {
+            client.Connect();
+        } else {
+            client.ConnectwithCreds(user, passwd);
+        }
 
         // Starting Flood
         if(flood){
