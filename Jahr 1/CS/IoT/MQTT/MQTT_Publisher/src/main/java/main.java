@@ -1,6 +1,7 @@
 import com.hivemq.client.mqtt.datatypes.MqttQos;
 import com.hivemq.client.mqtt.mqtt5.Mqtt5BlockingClient;
 import com.hivemq.client.mqtt.mqtt5.Mqtt5Client;
+import java.util.UUID;
 
 public class main {
 
@@ -87,7 +88,8 @@ public class main {
         // Starting Flood
         if(flood){
             for(;;) {
-                client.SendMessage(Message, Topic);
+                UUID uuid = UUID.randomUUID();
+                client.SendMessage(uuid.toString(), Topic);
             }
         }
 
