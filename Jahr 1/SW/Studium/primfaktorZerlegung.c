@@ -4,7 +4,7 @@ int main()
 {
     // User Input
     long input;
-    // Vektor Array für Ürimfaktoren
+    // Vektor Array für Primfaktoren
     long vektor[1024];
 
     // User Eingabe
@@ -17,7 +17,7 @@ int main()
         return 0;
     }
 
-    // Prim Paktor pro durchlauf
+    // Prim Faktor pro durchlauf
     long t = 2;
     // Array Index Counter
     int vektor_count = 0;
