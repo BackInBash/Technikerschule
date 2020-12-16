@@ -1,0 +1,133 @@
+diff --git a/src/its/sw/GUI.java b/src/its/sw/GUI.java
+index ac61ce4..88be1a2 100644
+--- a/src/its/sw/GUI.java
++++ b/src/its/sw/GUI.java
+@@ -172,12 +172,7 @@ public class GUI extends javax.swing.JFrame {
+ 
+   private void btnUebernehmenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUebernehmenActionPerformed
+       if (persCounter < 20) {
+-          persListe[persCounter] = new Person();
+-          persListe[persCounter].vorname = txfVorname.getText();
+-          persListe[persCounter].nachname = txfNachname.getText();
+-          persListe[persCounter].klasse = txfKlasse.getText();
+-          persListe[persCounter].plz = Integer.parseInt(txfPLZ.getText());
+-          persListe[persCounter].ort = txfOrt.getText();
++          persListe[persCounter] = new Person(txfVorname.getText(), txfNachname.getText(), txfKlasse.getText(), Integer.parseInt(txfPLZ.getText()), txfOrt.getText(), lblGebDatum.getText());
+           persCounter++;
+       } else {
+           JOptionPane.showMessageDialog(this, "Kein Speicher vorhanden!");
+@@ -187,11 +182,11 @@ public class GUI extends javax.swing.JFrame {
+   private void btnAnzeigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnzeigenActionPerformed
+       daten.clear();
+       for (int i = 0; i < persCounter; i++) {
+-          daten.addElement(persListe[i].nachname + ", "
+-                  + persListe[i].vorname + ", "
+-                  + persListe[i].klasse + ", "
+-                  + String.valueOf(persListe[i].plz) + ", "
+-                  + persListe[i].ort);
++          daten.addElement(persListe[i].getNachname() + ", "
++                  + persListe[i].getVorname() + ", "
++                  + persListe[i].getKlasse() + ", "
++                  + String.valueOf(persListe[i].getPLZ()) + ", "
++                  + persListe[i].getOrt());
+       }
+   }//GEN-LAST:event_btnAnzeigenActionPerformed
+ 
+diff --git a/src/its/sw/Person.java b/src/its/sw/Person.java
+index ded712f..779f47d 100644
+--- a/src/its/sw/Person.java
++++ b/src/its/sw/Person.java
+@@ -1,10 +1,87 @@
+ package its.sw;
+ 
+ public class Person {
+-  public String vorname;
+-  public String nachname;
+-  public String klasse;
+-  public int plz;
+-  public String ort;
+-  public String gebdatum;
++
++    private String vorname;
++    private String nachname;
++    private String klasse;
++    private int plz;
++    private String ort;
++    private String gebdatum;
++
++    public Person() {
++
++    }
++
++    public Person(String vorname, String nachname, String klasse, int plz, String ort, String gebdatum) {
++        this.vorname = vorname;
++        this.nachname = nachname;
++        this.klasse = klasse;
++        this.plz = plz;
++        this.ort = ort;
++        this.gebdatum = gebdatum;
++    }
++
++    public Person(Person p) {
++        this.vorname = p.vorname;
++        this.nachname = p.nachname;
++        this.klasse = p.klasse;
++        this.plz = plz;
++        this.ort = ort;
++        this.gebdatum = gebdatum;
++    }
++
++    /*
++      Set Methods
++     */
++    public void setVorname(String vorname) {
++        this.vorname = vorname;
++    }
++
++    public void setNachname(String nachname) {
++        this.nachname = nachname;
++    }
++
++    public void setKlasse(String klasse) {
++        this.klasse = klasse;
++    }
++
++    public void setPLZ(int plz) {
++        this.plz = plz;
++    }
++
++    public void setOrt(String ort) {
++        this.ort = ort;
++    }
++
++    public void setGebdatum(String gebdatum) {
++        this.gebdatum = gebdatum;
++    }
++
++    /*
++      Get Methods
++     */
++    public String getVorname() {
++        return this.vorname;
++    }
++
++    public String getNachname() {
++        return this.nachname;
++    }
++
++    public String getKlasse() {
++        return this.klasse;
++    }
++
++    public int getPLZ() {
++        return this.plz;
++    }
++
++    public String getOrt() {
++        return this.ort;
++    }
++
++    public String getGebdatum() {
++        return this.gebdatum;
++    }
+ }
