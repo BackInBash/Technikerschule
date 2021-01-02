@@ -173,7 +173,7 @@ A|B|Q|
 
 **Bsp mit 1 Variablen**
 A|Q|
---|--|--|
+--|--|
 |0 |x
 |1|x
 
