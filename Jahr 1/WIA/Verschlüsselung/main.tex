@@ -28,11 +28,11 @@
 %----------------------------------------------------------------------------------------
 
 \documentclass[
-		twoside,openright,titlepage,numbers=noenddot,headinclude,%1headlines,
-	 	footinclude=true,cleardoublepage=empty,
+		twosideoff,openright,titlepage,numbers=noenddot,headinclude,%1headlines,
+	 	footinclude=false,cleardoublepage=empty,
 		dottedtoc, % Make page numbers in the table of contents flushed right with dots leading to them
-		BCOR=5mm,paper=a4,fontsize=11pt, % Binding correction, paper type and font size
-		ngerman,american, % Languages, change this to your language(s)
+		BCOR=5mm,paper=a4,fontsize=12pt, % Binding correction, paper type and font size
+		ngerman % Languages, change this to your language(s)
 		]{scrreprt} 
                 
 % Includes the file which contains all the document configurations and packages - make sure to edit this file
@@ -49,12 +49,12 @@
 
 \raggedbottom % Makes all pages the height of the text on that page
 
-\selectlanguage{american} % Select your default language - e.g. american or ngerman
+\selectlanguage{ngerman} % Select your default language - e.g. american or ngerman
 
 %\renewcommand*{\bibname}{new name} % Uncomment to change the name of the bibliography
 %\setbibpreamble{} % Uncomment to include a preamble to the bibliography - some text before the reference list starts
 
-\pagenumbering{roman} % Roman page numbering prior to the start of the thesis content (i, ii, iii, etc)
+\pagenumbering{arabic} % Roman page numbering prior to the start of the thesis content (i, ii, iii, etc)
 
 \pagestyle{plain} % Suppress headers for the pre-content pages
 
@@ -64,17 +64,17 @@
 
 \include{FrontBackMatter/Titlepage} % Main title page
 
-\include{FrontBackMatter/Titleback} % Back of the title page
+%\include{FrontBackMatter/Titleback} % Back of the title page
 
-\cleardoublepage\include{FrontBackMatter/Dedication} % Dedication page
+%\cleardoublepage\include{FrontBackMatter/Dedication} % Dedication page
 
 %\cleardoublepage\include{FrontBackMatter/Foreword} % Uncomment and create a Foreword.tex to include a foreword
 
-\cleardoublepage\include{FrontBackMatter/Abstract} % Abstract page
+%\cleardoublepage\include{FrontBackMatter/Abstract} % Abstract page
 
 \cleardoublepage\include{FrontBackMatter/Publications} % Publications from the thesis page
 
-\cleardoublepage\include{FrontBackMatter/Acknowledgments} % Acknowledgements page
+%\cleardoublepage\include{FrontBackMatter/Acknowledgments} % Acknowledgements page
 
 \pagestyle{scrheadings} % Show chapter titles as headings
 
