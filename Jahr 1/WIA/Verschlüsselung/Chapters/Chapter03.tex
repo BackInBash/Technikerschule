@@ -6,18 +6,18 @@
 
 %----------------------------------------------------------------------------------------
 
-Hier wird wie im Beispiel von TLS zuerst über eine Asymmetrische Verschlüsselung ein sicherer Übertragungskanal aufgebaut im Anschluss werden temporäre Symmetrische Schlüssel mit einer kurzen Lebenszeit generiert und über den Sicheren Kanal verteilt. Im Anschluss wird dann mit Hilfe der Symmetrischen Verschlüsselung weiter kommuniziert. Dadurch ergeben sich Performance Vorteile.
+Hier wird wie im Beispiel von TLS zuerst über eine asymmetrische Verschlüsselung ein sicherer Übertragungskanal aufgebaut im Anschluss werden temporäre symmetrische Schlüssel mit einer kurzen Lebenszeit generiert und über den sicheren Kanal verteilt. Im Anschluss wird dann mithilfe der symmetrischen Verschlüsselung weiter kommuniziert. Dadurch ergeben sich Performance Vorteile.
 
-\section{Ablauf einer Hybriden Verschlüsselung}
+\section{Ablauf hybrider Verschlüsselung}
 \begin{enumerate}
-    \item Erstellen eines Schlüsselpaares bestehend aus Public und Private Key
-    \item Veröffentlichen des Public Keys
-    \item Der Absender lädt sich den Public Key vom Empfänger
-    \item Der Absender verschlüsselt die zu übertragenden Daten mit dem Public Key des Empfängers
-    \item Der Empfänger ist nun in der lage mithilfe seines passenden Private Keys die empfangene Nachricht zu entschlüsseln.
+    \item Erstellen eines Schlüsselpaares bestehend aus Public und Private Key.
+    \item Veröffentlichen des Public Keys.
+    \item Der Absender lädt sich den Public Key vom Empfänger.
+    \item Der Absender verschlüsselt die zu übertragenden Daten mit dem Public Key des Empfängers.
+    \item Der Empfänger ist nun in der Lage mithilfe seines passenden Private Keys die empfangene Nachricht zu entschlüsseln.
     \\\textbf{Es besteht ein sicherer Übertragungskanal}
-    \item Erstellung von Temporären Session Keys für eine symmetrische Verschlüsselung
-    \item Übertragung des symmetrischen Keys über den sicherern Kanal
-    \item Die Kommunikation wird nun über den symmetrischen Kanal geleitet
+    \item Erstellung von Temporären Session Keys für eine symmetrische Verschlüsselung.
+    \item Übertragung des symmetrischen Keys über den sicheren Kanal.
+    \item Die Kommunikation wird nun über den symmetrischen Kanal geleitet.
     \item Die asymmetrische Verbindung wird getrennt.
 \end{enumerate}
