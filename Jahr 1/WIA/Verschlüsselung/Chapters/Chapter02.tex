@@ -55,4 +55,14 @@ Nachteile die sich durch die asymmetrische Verschlüsselung ergeben:
 \newpage
 %--------------------------------------------------
 
-\section{Beispiele zu Asymmetrischer Verschlüsselung}
+\section{Implementierungen von asymmetrischer Verschlüsselung}
+
+\begin{itemize}
+    \item \textbf{S/MIME}\\steht für Secure Multipurpose Internet Mail Extension und ist ein Protokoll zum Verschlüsseln und Signieren von E-Mails.\citep{ERTEL:2020}
+    \item \textbf{SSH}\\Secure Shell (SSH) ist eine Software um Rechner remote zu steuern und zu verwalten. Dabei wird die Verbindung durch den Einsatz von Public Key Verfahren verschlüsselt, ganz im gegensatz zu seinem Vorgänger Telnet dieser war unverschlüsselt.\citep{ERTEL:2020}
+    \item \textbf{SSL}\\ Secure Socket Layer (SSL) ist ein Protokoll um TCP Verbindungen zwischen zwei Sockets zu verschlüsseln. 
+    Dabei kommt eine Hybride Verschlüsselung zum Einsatz (mehr dazu später). SSL wurde später durch TLS (Transport Layer Security) abgelöst.\citep{ERTEL:2020}
+    \item \textbf{VPN / IPsec}\\Virtual Private Networking und IP Security baut auf den Ideen und Grundlagen von SSL/TLS auf.
+    Die Vorteile von IPsec beziehen sich auf die Verschlüsselung auf IP-Ebene (Layer 3) und nicht wie bei SSL/TSL auf Transport Ebene (Layer 4).
+    Dadurch ist es IPsec möglich den kompletten Datenverkehr eines Netzwerks zu verschlüsseln. Ebenfalls müssen bestehende Anwendungen nicht verändert werden da IPsec unter der Transport Schicht (Layer 4) arbeitet.\citep{ERTEL:2020}
+\end{itemize}
