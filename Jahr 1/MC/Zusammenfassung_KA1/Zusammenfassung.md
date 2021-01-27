@@ -212,3 +212,65 @@ Bsp.
 
 ## KV-Diagramm
 ![](KV-Diagramm.PNG)
+
+## DeMorgan Gesetze
+
+### Regel 1
+![](DeMorgan1.png)
+
+### Regel 2
+![](DeMorgan2.png)
+
+## 2er Komplement
+
+### Negative Zahlen im Dualsystem darstellen
+
+![](2erkomplement.png)
+
+> **Das Bit mit der größten Wertigkeit wird Negativ gewertet. Die restlichen Bits werden auf Addiert.**
+
+Bsp1.
+|-8|4|2|1|
+-|-|-|-|
+|1|1|1|1
+
+= -1
+
+Bsp2.
+|-16|8|4|2|1|
+-|-|-|-|--|
+|1|1|1|1|1
+
+= -1
+
+### Schritt 1: Alle Stellen Invertieren
+
+Aus `0010` wird `1101`
+
+### Schritt 2: Mit 1 Addieren
+
+`1101` + `0001` = `1110`
+
+### Rechnung
+
+`0101` (5) + `1110` (-2) = `0011` (3) 
+
+> **Im Zahlenbereich bei 4-Bit. Von [-8] bis [7] kein Übertrag bei der Addition.**
+
+## Multiplexer
+
+![](Multiplexer.png)
+
+## RS-Flip Flop
+
+### Funktionsplan eines RS-Flip Flops ohne Taktsteuerung
+![](rs-flip-flop-ohne-takt.png)
+
+### Taktsteuerung
+![](taktsteuerung.png)
+
+### Taktzustand Gesteuert
+![](taktzustandgesteuert.png)
+
+### Taktflanken Gesteuert
+![](taktflankengesteuert.png)
