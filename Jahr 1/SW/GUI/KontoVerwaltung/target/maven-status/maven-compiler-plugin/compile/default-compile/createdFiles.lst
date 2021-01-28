@@ -1,0 +1,7 @@
+de/its/bmr/kontoverwaltung/Utils.class
+de/its/bmr/kontoverwaltung/models/Konto.class
+de/its/bmr/kontoverwaltung/models/Person.class
+de/its/bmr/kontoverwaltung/KontoVerwaltung.class
+de/its/bmr/kontoverwaltung/models/Sparkonto.class
+de/its/bmr/kontoverwaltung/models/Festgeldkonto.class
+de/its/bmr/kontoverwaltung/models/Girokonto.class
