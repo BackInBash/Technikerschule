@@ -13,28 +13,28 @@ import de.its.bmr.kontoverwaltung.models.Konto;
  */
 public class Utils {
 
-    public static void transfer(Konto from, Konto to, double amount) {
+    public static void transfer(Konto from, Konto to, double betrag) {
         // Girokonto darf überall hin Überweisen
         if (from.getClass().getName().equals("Girokonto")) {
             if (to.getClass().getName().equals("Festgeldkonto")) {
-                if(amount >= 5000)
-                    from.ueberweisen(amount, to);
+                if(betrag >= 5000)
+                    from.ueberweisen(betrag, to);
             } else {
-                from.ueberweisen(amount, to);
+                from.ueberweisen(betrag, to);
             }
         }
 
         // From Sparkonto to Girokonto
         if (from.getClass().getName().equals("Sparkonto")) {
             if (to.getClass().getName().equals("Girokonto")) {
-                from.ueberweisen(amount, to);
+                from.ueberweisen(betrag, to);
             }
         }
 
         // From Festgeldkonto to Girokonto
         if (from.getClass().getName().equals("Festgeldkonto")) {
             if (to.getClass().getName().equals("Girokonto")) {
-                from.ueberweisen(amount, to);
+                from.ueberweisen(betrag, to);
             }
         }
     }
