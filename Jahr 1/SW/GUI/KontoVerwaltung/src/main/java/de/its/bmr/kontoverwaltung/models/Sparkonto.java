@@ -13,16 +13,26 @@ public class Sparkonto extends Konto {
 
     private final double zinsen = 0.02;
 
-    public void removeGuthaben(double guthaben) {
-        if ((this.guthaben = -guthaben) >= 0) {
-            this.guthaben = -guthaben;
+
+    // +0.25% Zinsen pro Tag
+    private void addZinsen() {
+        if (this.getGuthaben() > 0) {
+            this.addGuthaben((this.getGuthaben() * zinsen));
         }
     }
 
-    // +0.25% Zinsen pro Tag
-    public void addZinsen() {
-        if (this.guthaben > 0) {
-            this.guthaben = +(this.guthaben * zinsen);
+    public void abrechnen() {
+        addZinsen();
+    }
+
+    
+    public void ueberweisen(double betrag, Konto dest) {
+        // From Sparkonto to Girokonto
+        if (dest.getClass().getName().equals("Girokonto")) {
+            if ((this.getGuthaben() - betrag) >= 0) {
+                this.removeGuthaben(betrag);
+                dest.addGuthaben(betrag);
+            }
         }
     }
 }

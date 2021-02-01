@@ -16,7 +16,7 @@ public class Festgeldkonto extends Sparkonto {
     // Laufzeit in Monaten
     private int laufzeit;
     // Zeitpunkt der Buchung
-    private Timestamp booking = kontoErstellt;
+    private Timestamp booking = this.getKontoErstellt();
 
     public Festgeldkonto(int laufzeit) {
         laufzeit = laufzeit;
@@ -24,9 +24,9 @@ public class Festgeldkonto extends Sparkonto {
 
     public boolean timeExeeded() {
         Timestamp current = new Timestamp(System.currentTimeMillis());
-        int verstricheneMonate = 
-                ((int) java.time.Duration.between(
-                    booking.toLocalDateTime(), 
+        int verstricheneMonate
+                = ((int) java.time.Duration.between(
+                        booking.toLocalDateTime(),
                         current.toLocalDateTime()).toDays()) / 30;
 
         if (laufzeit <= verstricheneMonate) {
@@ -35,37 +35,31 @@ public class Festgeldkonto extends Sparkonto {
         return false;
     }
 
-    public void addGuthaben(double guthaben) {
-        if (guthaben >= 5000) {
-            this.guthaben = guthaben;
-            booking = new Timestamp(System.currentTimeMillis());
-        } else {
-            //Throw Exception
+    public void ueberweisen(double betrag, Konto dest) {
+        if (timeExeeded() && (this.getGuthaben() - betrag) >= 0) {
+            this.removeGuthaben(betrag);
+            dest.addGuthaben(betrag);
         }
     }
 
-    public void removeGuthaben(double guthaben) {
-        if (timeExeeded()) {
-            this.guthaben = -guthaben;
-        } else {
-            //Throw Exception
-        }
+    public void abrechnen(){
+        addZinsen();
     }
-
+    
     public void addZinsen() {
         if (timeExeeded()) {
             switch (laufzeit) {
                 case 6:
                     // 6 Monate + 4%
-                    this.guthaben = +(this.guthaben * 0.04);
+                    this.addGuthaben(this.getGuthaben() * 0.04);
                     break;
                 case 12:
                     // 12 Monate + 4.5%
-                    this.guthaben = +(this.guthaben * 0.045);
+                    this.addGuthaben(this.getGuthaben() * 0.045);
                     break;
                 case 24:
                     // 24 Monate + 5%
-                    this.guthaben = +(this.guthaben * 0.05);
+                    this.addGuthaben(this.getGuthaben() * 0.05);
                     break;
             }
         }

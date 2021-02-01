@@ -16,23 +16,25 @@ public class Utils {
     public static void transfer(Konto from, Konto to, double amount) {
         // Girokonto darf überall hin Überweisen
         if (from.getClass().getName().equals("Girokonto")) {
-            from.removeGuthaben(amount);
-            to.addGuthaben(amount);
+            if (to.getClass().getName().equals("Festgeldkonto")) {
+                if(amount >= 5000)
+                    from.ueberweisen(amount, to);
+            } else {
+                from.ueberweisen(amount, to);
+            }
         }
 
         // From Sparkonto to Girokonto
         if (from.getClass().getName().equals("Sparkonto")) {
             if (to.getClass().getName().equals("Girokonto")) {
-                from.removeGuthaben(amount);
-                to.addGuthaben(amount);
+                from.ueberweisen(amount, to);
             }
         }
 
         // From Festgeldkonto to Girokonto
         if (from.getClass().getName().equals("Festgeldkonto")) {
             if (to.getClass().getName().equals("Girokonto")) {
-                from.removeGuthaben(amount);
-                to.addGuthaben(amount);
+                from.ueberweisen(amount, to);
             }
         }
     }

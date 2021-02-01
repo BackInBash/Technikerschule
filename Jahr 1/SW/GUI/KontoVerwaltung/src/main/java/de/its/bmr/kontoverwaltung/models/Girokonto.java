@@ -9,20 +9,42 @@ package de.its.bmr.kontoverwaltung.models;
  *
  * @author markus
  */
-public class Girokonto extends Konto {
+public class Girokonto extends Sparkonto {
 
     private final double dispokredit = 0.01199;
     private final double zinsen = 0.0025;
+    
+    private double dispohoehe = 0;
 
+    public void setDispohoehe(double dispo){
+        dispohoehe = dispo;
+    }
+    
     // -11.99% Dispo pro Tag
-    public void addDispo() {
-        this.guthaben = -(this.guthaben * dispokredit);
+    private void addDispo() {
+        this.removeGuthaben((this.getGuthaben() * dispokredit));
     }
 
     // +0.25% Zinsen pro Tag
-    public void addZinsen() {
-        if (this.guthaben > 0) {
-            this.guthaben = +(this.guthaben * zinsen);
+    private void addZinsen() {
+        if (this.getGuthaben() > 0) {
+            this.addGuthaben(this.getGuthaben() * zinsen);
+        }
+    }
+    
+    public void abrechnen(){
+        if(this.getGuthaben()>0){
+            addZinsen();
+        }
+        else{
+            addDispo();
+        }
+    }
+    
+    public void ueberweisen(double betrag, Konto dest){
+        if((this.getGuthaben()-betrag)>dispohoehe){
+            this.removeGuthaben(betrag);
+            dest.addGuthaben(betrag);
         }
     }
 }

@@ -11,22 +11,22 @@ import java.sql.Timestamp;
  *
  * @author markus
  */
-public class Konto {
+public abstract class Konto {
 
-    protected double guthaben;
-    protected Timestamp kontoErstellt = 
+    private double guthaben;
+    private Timestamp kontoErstellt = 
             new Timestamp(System.currentTimeMillis());
-    protected float kontonummer;
+    private float kontonummer;
 
     public double getGuthaben() {
         return guthaben;
     }
 
-    public void addGuthaben(double guthaben) {
+    public void addGuthaben(double betrag) {
         this.guthaben = +guthaben;
     }
 
-    public void removeGuthaben(double guthaben) {
+    public void removeGuthaben(double betrag) {
         this.guthaben = -guthaben;
     }
 
@@ -37,5 +37,8 @@ public class Konto {
     public float getKontonummer() {
         return kontonummer;
     }
-
+    
+    public abstract void abrechnen();
+    
+    public abstract void ueberweisen(double betrag, Konto dest);
 }
