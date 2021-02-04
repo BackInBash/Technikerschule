@@ -1,0 +1,52 @@
+
+version: '3'
+
+services:
+    reverse-proxy:
+        # The official v2 Traefik docker image
+        image: traefik:v2.4
+        container_name: iot_proxy
+        # Enables the web UI and tells Traefik to listen to docker
+        command: 
+            - --api.insecure=true
+            - --api.dashboard=true # <== Enabling the dashboard to view services, middlewares, routers, etc...
+            - --api.debug=true # <== Enabling additional endpoints for debugging and profiling
+            - --log.level=DEBUG # <== Setting the level of the logs from traefik
+            - --providers.docker=true # <== Enabling docker as the provider for traefik
+            - --providers.docker.exposedbydefault=false # <== Don't expose every container to traefik, only expose enabled ones
+        ports:
+            # The HTTP port
+            - "80:80"
+            # The Web UI (enabled by --api.insecure=true)
+            - "8080:8080"
+        volumes:
+            # So that Traefik can listen to the Docker events
+            - /var/run/docker.sock:/var/run/docker.sock
+        labels:
+            - "traefik.frontend.headers.STSPreload=true"
+            - "traefik.frontend.passHostHeader=true"
+        networks:
+            - default
+            - iot_internal
+       
+    node-red:
+        # A container that exposes an API to show its IP address
+        image: nodered/node-red:latest-12
+        container_name: iot_node-red
+        ports:
+          - "127.0.0.1:1880:1880"
+        volumes: 
+          - /data
+        networks:
+            - iot_internal
+        labels:
+            - "traefik.enable=true"
+            - "traefik.backend=iot_node-red"
+            - "traefik.docker.network=iot_internal"
+            - "traefik.frontend.rule=Host:node-red && PathPrefix(`/node-red`)"
+            - "traefik.http.routers.iot_node-red.rule=PathPrefix(`/node-red/`)"
+            - "traefik.http.routers.iot_node-red.middlewares=iot_node-red-stripprefix"
+            - "traefik.http.middlewares.iot_node-red-stripprefix.stripprefix.prefixes=/node-red"
+networks:
+    iot_internal:
+      external: false
