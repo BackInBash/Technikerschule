@@ -31,10 +31,11 @@ services:
         # A container that exposes an API to show its IP address
         image: nodered/node-red:latest-12
         container_name: iot_node-red
+        user: root:root
         ports:
           - "127.0.0.1:1880:1880"
         volumes: 
-          - /data
+          - ./node-red:/data
         networks:
             - iot_internal
         labels:
@@ -45,6 +46,17 @@ services:
             - "traefik.http.routers.iot_node-red.rule=PathPrefix(`/node-red/`)"
             - "traefik.http.routers.iot_node-red.middlewares=iot_node-red-stripprefix"
             - "traefik.http.middlewares.iot_node-red-stripprefix.stripprefix.prefixes=/node-red"
+            
+    mosquitto:
+        image: eclipse-mosquitto:latest
+        container_name: iot_mosquitto
+        ports:
+            - 1883:1883
+            - 9001:9001
+        volumes: 
+            - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
+            - ./mosquitto/data:/mosquitto/data
+            - ./mosquitto/log:/mosquitto/log
 networks:
     iot_internal:
       external: false
