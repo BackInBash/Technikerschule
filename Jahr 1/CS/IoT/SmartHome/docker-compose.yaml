@@ -20,6 +20,7 @@ services:
         volumes:
             # So that Traefik can listen to the Docker events
             - /var/run/docker.sock:/var/run/docker.sock
+        restart: always
         labels:
             - "traefik.frontend.headers.STSPreload=true"
             - "traefik.frontend.passHostHeader=true"
@@ -36,6 +37,7 @@ services:
           - "127.0.0.1:1880:1880"
         volumes: 
           - ./node-red:/data
+        restart: always
         networks:
             - iot_internal
         labels:
@@ -57,6 +59,7 @@ services:
             - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
             - ./mosquitto/data:/mosquitto/data
             - ./mosquitto/log:/mosquitto/log
+        restart: always
 networks:
     iot_internal:
       external: false
