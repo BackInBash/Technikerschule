@@ -18,6 +18,7 @@ systemctl enable dnsmasq
 echo "interface wlan0
     static ip_address=192.168.4.1/24
     nohook wpa_supplicant" >> /etc/dhcpcd.conf
+sysctl -p
 
 ## Enable IPv4 Forwarding
 echo "# https://www.raspberrypi.org/documentation/configuration/wireless/access-point-routed.md
