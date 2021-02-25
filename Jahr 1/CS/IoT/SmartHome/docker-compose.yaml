@@ -33,8 +33,6 @@ services:
         image: nodered/node-red:latest-12
         container_name: iot_node-red
         user: root:root
-        ports:
-          - "127.0.0.1:1880:1880"
         volumes: 
           - ./node-red:/data
         restart: always
@@ -45,9 +43,11 @@ services:
             - "traefik.backend=iot_node-red"
             - "traefik.docker.network=iot_internal"
             - "traefik.frontend.rule=Host:node-red && PathPrefix(`/node-red`)"
-            - "traefik.http.routers.iot_node-red.rule=PathPrefix(`/node-red/`)"
+            - "traefik.http.routers.iot_node-red.rule=PathPrefix(`/node-red`)"
             - "traefik.http.routers.iot_node-red.middlewares=iot_node-red-stripprefix"
+            - "traefik.http.routers.iot_node-red.middlewares=iot_node-red-auth"
             - "traefik.http.middlewares.iot_node-red-stripprefix.stripprefix.prefixes=/node-red"
+            - "traefik.http.middlewares.iot_node-red-auth.basicauth.users=iot:test123"
             
     mosquitto:
         image: eclipse-mosquitto:latest
@@ -60,6 +60,50 @@ services:
             - ./mosquitto/data:/mosquitto/data
             - ./mosquitto/log:/mosquitto/log
         restart: always
+
+    grafana:
+        image: grafana/grafana:latest
+        container_name: iot_grafana
+        restart: always
+        volumes:
+            - ./grafana:/var/lib/grafana
+        environment:
+          - GF_SECURITY_ADMIN_PASSWORD=test123
+          - GF_USERS_ALLOW_SIGN_UP=false
+          - GF_SERVER_DOMAIN=/grafana/
+          - GF_SERVER_ROOT_URL=/grafana/
+        labels:
+            - "traefik.enable=true"
+            - "traefik.backend=iot_grafana"
+            - "traefik.docker.network=iot_internal"
+            - "traefik.frontend.rule=Host:grafana && PathPrefix(`/grafana`)"
+            - "traefik.http.routers.iot_grafana.rule=PathPrefix(`/grafana`)"
+            - "traefik.http.routers.iot_grafana.middlewares=iot_grafana-stripprefix"
+            - "traefik.http.middlewares.iot_grafana-stripprefix.stripprefix.prefixes=/grafana"
+
+    influxdb:
+        image: influxdb:latest
+        container_name: iot_influxdb
+        restart: always
+        volumes:
+            - ./influxdb:/var/lib/influxdb
+        environment:
+            - STATIC_PREFIX=/influx/"
+            - API_PREFIX=/influx/"
+            - BASE_PATH=/influx/"
+            - API_BASE_PATH=/influx/"
+            - INFLUXDB_DB=db0
+            - INFLUXDB_ADMIN_USER=admin
+            # Min 8. Character
+            - INFLUXDB_ADMIN_PASSWORD=12345678
+        labels:
+            - "traefik.enable=true"
+            - "traefik.backend=iot_influxdb"
+            - "traefik.docker.network=iot_internal"
+            - "traefik.frontend.rule=Host:iot_influxdb && PathPrefix(`/influx`)"
+            - "traefik.http.routers.iot_influxdb.rule=PathPrefix(`/influx`)"
+            - "traefik.http.routers.iot_influxdb.middlewares=iot_influxdb-stripprefix"
+            - "traefik.http.middlewares.iot_influxdb-stripprefix.stripprefix.prefixes=/influx"
 networks:
     iot_internal:
       external: false
