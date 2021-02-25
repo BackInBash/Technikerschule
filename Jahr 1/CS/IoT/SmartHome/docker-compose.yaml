@@ -80,30 +80,25 @@ services:
             - "traefik.http.routers.iot_grafana.rule=PathPrefix(`/grafana`)"
             - "traefik.http.routers.iot_grafana.middlewares=iot_grafana-stripprefix"
             - "traefik.http.middlewares.iot_grafana-stripprefix.stripprefix.prefixes=/grafana"
+        networks: 
+            - iot_internal
 
     influxdb:
         image: influxdb:latest
         container_name: iot_influxdb
         restart: always
+        ports: 
+            - 8086:8086
+        user: root:root
         volumes:
             - ./influxdb:/var/lib/influxdb
         environment:
-            - STATIC_PREFIX=/influx/"
-            - API_PREFIX=/influx/"
-            - BASE_PATH=/influx/"
-            - API_BASE_PATH=/influx/"
             - INFLUXDB_DB=db0
-            - INFLUXDB_ADMIN_USER=admin
+            - INFLUXDB_ADMIN_USER=adming
             # Min 8. Character
             - INFLUXDB_ADMIN_PASSWORD=12345678
-        labels:
-            - "traefik.enable=true"
-            - "traefik.backend=iot_influxdb"
-            - "traefik.docker.network=iot_internal"
-            - "traefik.frontend.rule=Host:iot_influxdb && PathPrefix(`/influx`)"
-            - "traefik.http.routers.iot_influxdb.rule=PathPrefix(`/influx`)"
-            - "traefik.http.routers.iot_influxdb.middlewares=iot_influxdb-stripprefix"
-            - "traefik.http.middlewares.iot_influxdb-stripprefix.stripprefix.prefixes=/influx"
+        networks: 
+            - iot_internal
 networks:
     iot_internal:
-      external: false
+      driver: bridge
