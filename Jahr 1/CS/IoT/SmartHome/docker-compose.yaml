@@ -27,7 +27,7 @@ services:
         networks:
             - default
             - iot_internal
-       
+    # Node RED
     node-red:
         # A container that exposes an API to show its IP address
         image: nodered/node-red:latest-12
@@ -48,7 +48,7 @@ services:
             - "traefik.http.routers.iot_node-red.middlewares=iot_node-red-auth"
             - "traefik.http.middlewares.iot_node-red-stripprefix.stripprefix.prefixes=/node-red"
             - "traefik.http.middlewares.iot_node-red-auth.basicauth.users=iot:test123"
-            
+    # Mosquitto MQTT Broker      
     mosquitto:
         image: eclipse-mosquitto:latest
         container_name: iot_mosquitto
@@ -60,7 +60,7 @@ services:
             - ./mosquitto/data:/mosquitto/data
             - ./mosquitto/log:/mosquitto/log
         restart: always
-
+    # Grafana Server
     grafana:
         image: grafana/grafana:latest
         container_name: iot_grafana
@@ -82,7 +82,7 @@ services:
             - "traefik.http.middlewares.iot_grafana-stripprefix.stripprefix.prefixes=/grafana"
         networks: 
             - iot_internal
-
+    # Influx Database
     influxdb:
         image: influxdb:latest
         container_name: iot_influxdb
