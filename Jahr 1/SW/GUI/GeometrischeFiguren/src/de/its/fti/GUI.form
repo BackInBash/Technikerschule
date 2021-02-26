@@ -339,6 +339,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Farbe"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSelectColorActionPerformed"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JPanel" name="pnlControl">
 
