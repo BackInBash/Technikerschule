@@ -1,13 +1,18 @@
 package de.its.fti;
 
 import java.awt.Color;
-import java.util.UUID;
 
 /**
  *
  * @author lorenz
  */
 public abstract class GeometrischeFigur {
+
+    enum lineart {
+        VOLL,
+        GEPUNKTET,
+        GESTRICHELT
+    }
 
     private Color farbe;
 
@@ -18,7 +23,7 @@ public abstract class GeometrischeFigur {
     public void setFarbe(Color farbe) {
         this.farbe = farbe;
     }
-      
+
     public abstract double berechneFlaecheninhalt();
 
 }

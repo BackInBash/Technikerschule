@@ -1,6 +1,7 @@
 package de.its.fti;
 
 import java.awt.Color;
+import java.text.DecimalFormat;
 import javax.swing.DefaultListModel;
 import javax.swing.JColorChooser;
 
@@ -28,6 +29,7 @@ public class GUI extends javax.swing.JFrame {
         pnlOverview = new javax.swing.JPanel();
         scrpnOverview = new javax.swing.JScrollPane();
         lstOverview = new javax.swing.JList();
+        lFlächeninhalt = new javax.swing.JLabel();
         pnlDetail = new javax.swing.JPanel();
         tbpnDetail = new javax.swing.JTabbedPane();
         pnlRectangle = new javax.swing.JPanel();
@@ -47,6 +49,7 @@ public class GUI extends javax.swing.JFrame {
         pnlControl = new javax.swing.JPanel();
         btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
+        btnLöschen = new javax.swing.JButton();
 
         jLabel3.setText("jLabel3");
 
@@ -72,12 +75,18 @@ public class GUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(scrpnOverview, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(pnlOverviewLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(lFlächeninhalt, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlOverviewLayout.setVerticalGroup(
             pnlOverviewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlOverviewLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrpnOverview)
+                .addComponent(scrpnOverview, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lFlächeninhalt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -98,7 +107,7 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlRectangleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfRectangleWidth, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                    .addComponent(tfRectangleWidth, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
                     .addComponent(tfRectangleLength))
                 .addContainerGap())
         );
@@ -133,7 +142,7 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
                 .addGroup(pnlTriangleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfTriangleBaseline, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                    .addComponent(tfTriangleBaseline, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
                     .addComponent(tfTriangleHeight))
                 .addContainerGap())
         );
@@ -163,7 +172,7 @@ public class GUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
-                .addComponent(tfCircleRadius, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                .addComponent(tfCircleRadius, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnlCircleLayout.setVerticalGroup(
@@ -202,6 +211,14 @@ public class GUI extends javax.swing.JFrame {
             }
         });
         pnlControl.add(btnUpdate);
+
+        btnLöschen.setText("Löschen");
+        btnLöschen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLöschenActionPerformed(evt);
+            }
+        });
+        pnlControl.add(btnLöschen);
 
         javax.swing.GroupLayout pnlDetailLayout = new javax.swing.GroupLayout(pnlDetail);
         pnlDetail.setLayout(pnlDetailLayout);
@@ -278,6 +295,7 @@ public class GUI extends javax.swing.JFrame {
         DefaultListModel listModel = new DefaultListModel();
         listModel.addAll(ListeGeometrischeFiguren.get());
         lstOverview.setModel(listModel);
+        setFlächenInhaltsLabel();
     }
     
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -311,9 +329,12 @@ public class GUI extends javax.swing.JFrame {
                 btnSelectColor.setBackground(null);
                 break;
         }
+        
         DefaultListModel listModel = new DefaultListModel();
         listModel.addAll(ListeGeometrischeFiguren.get());
         lstOverview.setModel(listModel);
+        lstOverview.updateUI();
+        setFlächenInhaltsLabel();
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
@@ -338,10 +359,15 @@ public class GUI extends javax.swing.JFrame {
             k.setRadius(Double.parseDouble(tfCircleRadius.getText()));
             k.setFarbe(btnSelectColor.getBackground());
         }
-        DefaultListModel listModel = new DefaultListModel();
-        listModel.addAll(ListeGeometrischeFiguren.get());
-        lstOverview.setModel(listModel);
+        lstOverview.updateUI();
+        setFlächenInhaltsLabel();
     }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnSelectColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectColorActionPerformed
+        // TODO add your handling code here:
+        Color ausgewaehlteFarbe = JColorChooser.showDialog(null,"Farbauswahl", null);
+        btnSelectColor.setBackground(ausgewaehlteFarbe);
+    }//GEN-LAST:event_btnSelectColorActionPerformed
 
     private void lstOverviewValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstOverviewValueChanged
         // TODO add your handling code here:
@@ -365,17 +391,31 @@ public class GUI extends javax.swing.JFrame {
             tfCircleRadius.setText(String.valueOf(k.getRadius()));
             btnSelectColor.setBackground(k.getFarbe());
         }
+        setFlächenInhaltsLabel();
     }//GEN-LAST:event_lstOverviewValueChanged
 
-    private void btnSelectColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectColorActionPerformed
+    private void btnLöschenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLöschenActionPerformed
         // TODO add your handling code here:
-        Color ausgewaehlteFarbe = JColorChooser.showDialog(null,"Farbauswahl", null);
-        btnSelectColor.setBackground(ausgewaehlteFarbe);
-    }//GEN-LAST:event_btnSelectColorActionPerformed
-
+        if (lstOverview.getSelectedValue() != null){
+            ListeGeometrischeFiguren.remove(lstOverview.getSelectedIndex());
+            
+            DefaultListModel listModel = new DefaultListModel();
+            listModel.addAll(ListeGeometrischeFiguren.get());
+            lstOverview.setModel(listModel);
+            
+            lstOverview.updateUI();
+            setFlächenInhaltsLabel();
+        }
+    }//GEN-LAST:event_btnLöschenActionPerformed
+    
+    private void setFlächenInhaltsLabel(){
+        DecimalFormat df = new DecimalFormat("#.## m²");
+        lFlächeninhalt.setText("Flächeninhalt: "+df.format(ListeGeometrischeFiguren.berechneFlächeninhalt()));
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnLöschen;
     private javax.swing.JButton btnSelectColor;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton jButton2;
@@ -385,6 +425,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel lFlächeninhalt;
     private javax.swing.JList lstOverview;
     private javax.swing.JPanel pnlCircle;
     private javax.swing.JPanel pnlControl;
