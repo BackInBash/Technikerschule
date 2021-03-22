@@ -1,3 +1,5 @@
+package de.its.bmr.Einlesen;
+
 
 import java.util.Date;
 
@@ -10,7 +12,7 @@ import java.util.Date;
  *
  * @author Markus
  */
-public class Adresse {
+public class Person {
 
     private String firstName;
     private String lastName;
@@ -21,7 +23,7 @@ public class Adresse {
     private String ciry;
     private long phoneNr;
 
-    public Adresse(String firstName, String lastName, int number, String street, Date birthDate, int postalCode, String ciry, long phoneNr) {
+    public Person(String firstName, String lastName, int number, String street, Date birthDate, int postalCode, String ciry, long phoneNr) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.number = number;
@@ -94,5 +96,9 @@ public class Adresse {
 
     public void setStreet(String street) {
         this.street = street;
+    }
+    
+    public String toString(){
+        return firstName+" "+lastName;
     }
 }

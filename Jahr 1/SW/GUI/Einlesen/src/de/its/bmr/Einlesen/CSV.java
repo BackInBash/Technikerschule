@@ -1,3 +1,5 @@
+package de.its.bmr.Einlesen;
+
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -16,13 +18,15 @@ import java.util.logging.Logger;
  */
 public class CSV {
 
-    public Adresse parse(String line) {
+    public static Person parse(String line) {
         try {
             String[] splitted = line.split(";");
-            DateFormat df = new SimpleDateFormat("dd:mm:yyy");
-            return new Adresse(splitted[0], splitted[1], Integer.parseInt(splitted[2]), splitted[3], df.parse(splitted[4]), Integer.parseInt(splitted[5]), splitted[6], Long.parseLong(splitted[7]));
+            DateFormat df = new SimpleDateFormat("dd.mm.yyyy");
+            return new Person(splitted[0], splitted[1], Integer.parseInt(splitted[2]), splitted[3], df.parse(splitted[4]), Integer.parseInt(splitted[5]), splitted[6], Long.parseLong(splitted[7]));
         } catch (ParseException ex) {
             Logger.getLogger(CSV.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NumberFormatException e) {
+            Logger.getLogger(CSV.class.getName()).log(Level.SEVERE, null, e);
         }
         return null;
     }
