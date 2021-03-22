@@ -94,3 +94,5 @@ fabric.properties
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
 /Jahr 1/SW/CLI/TextFormater/TestFormaterLib/target/
+Jahr 1/SW/GUI/KontoVerwaltung/target/classes/.netbeans_automatic_build
+Jahr 1/SW/GUI/KontoVerwaltung/target/test-classes/.netbeans_automatic_build
