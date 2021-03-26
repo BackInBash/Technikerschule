@@ -10,13 +10,7 @@ package de.its.bmr.Einlesen;
  *
  * @author Markus
  */
-public class Einlesen {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
-    
+public enum Einlesen {
+    CSV,
+    JSON
 }

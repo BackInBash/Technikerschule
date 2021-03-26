@@ -1,6 +1,5 @@
 package de.its.bmr.Einlesen;
 
-
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 
@@ -57,7 +56,7 @@ public class GUI extends javax.swing.JFrame {
         jPhone = new javax.swing.JTextPane();
         jLoad = new javax.swing.JButton();
         jScrollPane10 = new javax.swing.JScrollPane();
-        jListData = new javax.swing.JList<>();
+        jListData = new javax.swing.JList();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -122,27 +121,36 @@ public class GUI extends javax.swing.JFrame {
                         .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
-                            .addComponent(jScrollPane8, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane5))))
-                .addContainerGap(22, Short.MAX_VALUE))
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                            .addComponent(jScrollPane3))
+                        .addContainerGap(69, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGap(0, 49, Short.MAX_VALUE))
+                            .addComponent(jScrollPane4))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(17, 17, 17))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                            .addComponent(jScrollPane8)
+                            .addComponent(jScrollPane7)
+                            .addComponent(jScrollPane6))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,7 +208,7 @@ public class GUI extends javax.swing.JFrame {
 
         /* Abfrage, ob auf "Öffnen" geklickt wurde */
         if (rueckgabeWert == JFileChooser.APPROVE_OPTION) {
-            PersonenListe p = new PersonenListeIOImpl(chooser.getSelectedFile().getAbsolutePath());
+            PersonenListe p = new PersonenListeFactory(chooser.getSelectedFile().getAbsolutePath()).create();
             p.loadData();
             //jListData.setListData(p.getArray());
             DefaultListModel listModel = new DefaultListModel();
@@ -211,7 +219,17 @@ public class GUI extends javax.swing.JFrame {
 
     private void jListDataValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListDataValueChanged
         // TODO add your handling code here:
-        Person p = jListData.getSelectedValue();
+        if (jListData.getSelectedValue() != null) {
+            Person p = (Person) jListData.getSelectedValue();
+            jFirstName.setText(p.getFirstName());
+            jLastName.setText(p.getLastName());
+            jStreet.setText(p.getStreet());
+            jNumber.setText(String.valueOf(p.getNumber()));
+            jPostalCode.setText(String.valueOf(p.getPostalCode()));
+            jBirthdate.setText(p.getBirthDate().toString());
+            jCity.setText(p.getCiry());
+            jPhone.setText(p.getPhoneNr());
+        }
     }//GEN-LAST:event_jListDataValueChanged
 
     /**
@@ -262,7 +280,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JTextPane jLastName;
-    private javax.swing.JList<String> jListData;
+    private javax.swing.JList jListData;
     private javax.swing.JButton jLoad;
     private javax.swing.JTextPane jNumber;
     private javax.swing.JTextPane jPhone;

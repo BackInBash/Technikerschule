@@ -1,6 +1,7 @@
 package de.its.bmr.Einlesen;
 
 
+import com.google.gson.annotations.SerializedName;
 import java.util.Date;
 
 /*
@@ -14,23 +15,28 @@ import java.util.Date;
  */
 public class Person {
 
+    @SerializedName(value = "first_name")
     private String firstName;
+    @SerializedName(value = "last_name")
     private String lastName;
     private int number;
     private String street;
+    @SerializedName(value = "birthdate")
     private Date birthDate;
+    @SerializedName(value = "postalcode")
     private int postalCode;
-    private String ciry;
-    private long phoneNr;
+    private String city;
+    @SerializedName(value = "phone")
+    private String phoneNr;
 
-    public Person(String firstName, String lastName, int number, String street, Date birthDate, int postalCode, String ciry, long phoneNr) {
+    public Person(String firstName, String lastName, int number, String street, Date birthDate, int postalCode, String ciry, String phoneNr) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.number = number;
         this.street = street;
         this.birthDate = birthDate;
         this.postalCode = postalCode;
-        this.ciry = ciry;
+        this.city = ciry;
         this.phoneNr = phoneNr;
     }
 
@@ -59,10 +65,10 @@ public class Person {
     }
 
     public String getCiry() {
-        return ciry;
+        return city;
     }
 
-    public long getPhoneNr() {
+    public String getPhoneNr() {
         return phoneNr;
     }
 
@@ -86,11 +92,11 @@ public class Person {
         this.postalCode = postalCode;
     }
 
-    public void setCiry(String ciry) {
-        this.ciry = ciry;
+    public void setCiry(String city) {
+        this.city = city;
     }
 
-    public void setPhoneNr(long phoneNr) {
+    public void setPhoneNr(String phoneNr) {
         this.phoneNr = phoneNr;
     }
 
