@@ -5,10 +5,13 @@ import de.its.bmr.Einlesen.PersonenListe;
 import de.its.bmr.Einlesen.Person;
 import de.its.bmr.Einlesen.CSV;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -60,6 +63,23 @@ public class PersonenListeJSONImpl implements PersonenListe {
             }
             
             personen.addAll(JSON.parse(data.toString()));
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(PersonenListeJSONImpl.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException e) {
+            Logger.getLogger(PersonenListeJSONImpl.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+    
+    @Override
+    public void saveData(ArrayList<Person> personen){
+        BufferedWriter bf = null;
+        try {
+            FileOutputStream fs = new FileOutputStream(filePath);
+            OutputStreamWriter io = new OutputStreamWriter(fs);
+            bf = new BufferedWriter(io);
+
+            bf.write(JSON.serialise(personen));
 
         } catch (FileNotFoundException ex) {
             Logger.getLogger(PersonenListeJSONImpl.class.getName()).log(Level.SEVERE, null, ex);

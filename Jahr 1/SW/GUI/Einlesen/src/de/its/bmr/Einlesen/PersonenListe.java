@@ -19,4 +19,5 @@ public interface PersonenListe {
     public void loadData();
     public ArrayList<Person> getPersonen();
     public Person[] getArray();
+    public void saveData(ArrayList<Person> personen);
 }

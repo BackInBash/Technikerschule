@@ -66,4 +66,9 @@ public class PersonenListeCSVImpl implements PersonenListe {
             Logger.getLogger(PersonenListeCSVImpl.class.getName()).log(Level.SEVERE, null, e);
         }
     }
+
+    @Override
+    public void saveData(ArrayList<Person> personen) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

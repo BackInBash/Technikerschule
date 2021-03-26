@@ -17,12 +17,19 @@ public class JSON {
 
     public static ArrayList<Person> parse(String data) {
         Gson json = new GsonBuilder()
-            .setDateFormat("dd.mm.yyyy").create();
+                .setDateFormat("dd.mm.yyyy").create();
         Person[] p = json.fromJson(data, Person[].class);
         ArrayList<Person> person = new ArrayList<Person>();
         for (Person per : p) {
             person.add(per);
         }
         return person;
+    }
+
+    public static String serialise(ArrayList<Person> personen) {
+        Gson json = new GsonBuilder()
+                .setDateFormat("dd.mm.yyyy").create();
+        String p = json.toJson(personen, Person[].class);
+        return p;
     }
 }
