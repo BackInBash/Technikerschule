@@ -15,7 +15,7 @@ public class PersonenListeFactory {
 
     public PersonenListeFactory(String path) {
         if (path.endsWith(".csv")) {
-            p = new PersonenListeIOImpl(path);
+            p = new PersonenListeCSVImpl(path);
         }
         if (path.endsWith(".json")) {
             p = new PersonenListeJSONImpl(path);

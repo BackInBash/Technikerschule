@@ -22,12 +22,12 @@ import java.util.logging.Logger;
  *
  * @author Markus
  */
-public class PersonenListeIOImpl implements PersonenListe {
+public class PersonenListeCSVImpl implements PersonenListe {
 
     private ArrayList<Person> personen = new ArrayList<Person>();
     private String filePath;
 
-    public PersonenListeIOImpl(String filePath) {
+    public PersonenListeCSVImpl(String filePath) {
         this.filePath = filePath;
     }
 
@@ -61,9 +61,9 @@ public class PersonenListeIOImpl implements PersonenListe {
             }
 
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(PersonenListeIOImpl.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PersonenListeCSVImpl.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException e) {
-            Logger.getLogger(PersonenListeIOImpl.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(PersonenListeCSVImpl.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 }
