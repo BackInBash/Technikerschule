@@ -1,14 +1,14 @@
 package de.its.bmr.Einlesen;
 
 
-import de.its.bmr.Einlesen.PersonenListe;
-import de.its.bmr.Einlesen.Person;
-import de.its.bmr.Einlesen.CSV;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,7 +32,22 @@ public class PersonenListeCSVImpl implements PersonenListe {
     }
 
     @Override
-    public void addPerson(Person person) {
+    public void add(Person person) {
+        personen.add(person);
+    }
+    
+    @Override
+    public void remove(Person person) {
+        personen.remove(person);
+    }
+
+    @Override
+    public void update(Person person) {
+        personen.remove(personen.stream()
+                .filter(x -> x.getFirstName().equals(person.getFirstName())
+                    && x.getLastName().equals(person.getLastName())
+                    && x.getPhoneNr().equals(person.getPhoneNr()))
+                .findFirst().get());
         personen.add(person);
     }
 
@@ -69,6 +84,23 @@ public class PersonenListeCSVImpl implements PersonenListe {
 
     @Override
     public void saveData(ArrayList<Person> personen) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        BufferedWriter bf = null;
+        try {
+            FileOutputStream fs = new FileOutputStream(filePath);
+            OutputStreamWriter io = new OutputStreamWriter(fs);
+            bf = new BufferedWriter(io);
+            StringBuilder data = new StringBuilder();
+
+            for (Person person : personen) {
+                data.append(CSV.serialise(person));
+                
+            }
+            bf.write(data.toString());
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(PersonenListeCSVImpl.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException e) {
+            Logger.getLogger(PersonenListeCSVImpl.class.getName()).log(Level.SEVERE, null, e);
+        }
     }
 }

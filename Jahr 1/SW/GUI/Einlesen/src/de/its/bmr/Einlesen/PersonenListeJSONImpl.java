@@ -1,9 +1,5 @@
 package de.its.bmr.Einlesen;
 
-
-import de.its.bmr.Einlesen.PersonenListe;
-import de.its.bmr.Einlesen.Person;
-import de.its.bmr.Einlesen.CSV;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
@@ -35,7 +31,22 @@ public class PersonenListeJSONImpl implements PersonenListe {
     }
 
     @Override
-    public void addPerson(Person person) {
+    public void add(Person person) {
+        personen.add(person);
+    }
+
+    @Override
+    public void remove(Person person) {
+        personen.remove(person);
+    }
+
+    @Override
+    public void update(Person person) {
+        personen.remove(personen.stream()
+                .filter(x -> x.getFirstName().equals(person.getFirstName())
+                    && x.getLastName().equals(person.getLastName())
+                    && x.getPhoneNr().equals(person.getPhoneNr()))
+                .findFirst().get());
         personen.add(person);
     }
 
@@ -44,10 +55,10 @@ public class PersonenListeJSONImpl implements PersonenListe {
         return personen;
     }
 
-    public Person[] getArray(){
+    public Person[] getArray() {
         return (Person[]) personen.toArray();
     }
-    
+
     @Override
     public void loadData() {
         BufferedReader bf = null;
@@ -57,11 +68,11 @@ public class PersonenListeJSONImpl implements PersonenListe {
             bf = new BufferedReader(io);
             String line;
             StringBuilder data = new StringBuilder();
-            
+
             while ((line = bf.readLine()) != null) {
                 data.append(line);
             }
-            
+
             personen.addAll(JSON.parse(data.toString()));
 
         } catch (FileNotFoundException ex) {
@@ -70,9 +81,9 @@ public class PersonenListeJSONImpl implements PersonenListe {
             Logger.getLogger(PersonenListeJSONImpl.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-    
+
     @Override
-    public void saveData(ArrayList<Person> personen){
+    public void saveData(ArrayList<Person> personen) {
         BufferedWriter bf = null;
         try {
             FileOutputStream fs = new FileOutputStream(filePath);

@@ -1,5 +1,10 @@
 package de.its.bmr.Einlesen;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 
@@ -20,6 +25,7 @@ public class GUI extends javax.swing.JFrame {
     public GUI() {
         initComponents();
     }
+    private PersonenListe PersDB;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -57,6 +63,8 @@ public class GUI extends javax.swing.JFrame {
         jLoad = new javax.swing.JButton();
         jScrollPane10 = new javax.swing.JScrollPane();
         jListData = new javax.swing.JList();
+        btnAdd = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -107,18 +115,35 @@ public class GUI extends javax.swing.JFrame {
         });
         jScrollPane10.setViewportView(jListData);
 
+        btnAdd.setText("Add");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(214, 214, 214)
+                        .addGap(11, 11, 11)
+                        .addComponent(btnAdd)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnDelete)
+                        .addGap(18, 18, 18)
                         .addComponent(jLoad, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -192,7 +217,10 @@ public class GUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLoad)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLoad)
+                            .addComponent(btnAdd)
+                            .addComponent(btnDelete))))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
@@ -208,11 +236,11 @@ public class GUI extends javax.swing.JFrame {
 
         /* Abfrage, ob auf "Öffnen" geklickt wurde */
         if (rueckgabeWert == JFileChooser.APPROVE_OPTION) {
-            PersonenListe p = new PersonenListeFactory(chooser.getSelectedFile().getAbsolutePath()).create();
-            p.loadData();
+            PersDB = new PersonenListeFactory(chooser.getSelectedFile().getAbsolutePath()).create();
+            PersDB.loadData();
             //jListData.setListData(p.getArray());
             DefaultListModel listModel = new DefaultListModel();
-            listModel.addAll(p.getPersonen());
+            listModel.addAll(PersDB.getPersonen());
             jListData.setModel(listModel);
         }
     }//GEN-LAST:event_jLoadActionPerformed
@@ -231,6 +259,35 @@ public class GUI extends javax.swing.JFrame {
             jPhone.setText(p.getPhoneNr());
         }
     }//GEN-LAST:event_jListDataValueChanged
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        if (jListData.getSelectedValue() != null) {
+            Person person = (Person) jListData.getSelectedValue();
+            PersDB.remove(person);
+            PersDB.saveData(PersDB.getPersonen());
+
+            DefaultListModel listModel = new DefaultListModel();
+            listModel.addAll(PersDB.getPersonen());
+            jListData.setModel(listModel);
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        try {
+            // TODO add your handling code here:
+            DateFormat df = new SimpleDateFormat("dd.mm.yyyy");
+            Person p = new Person(jFirstName.getText(), jLastName.getText(),
+                    Integer.parseInt(jNumber.getText()),
+                    jStreet.getText(),
+                    df.parse(jBirthdate.getText()),
+                    Integer.parseInt(jPostalCode.getText()),
+                    jCity.getText(), jPhone.getText());
+        } catch (ParseException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_btnAddActionPerformed
 
     /**
      * @param args the command line arguments
@@ -268,6 +325,8 @@ public class GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JTextPane jBirthdate;
     private javax.swing.JTextPane jCity;
     private javax.swing.JTextPane jFirstName;
