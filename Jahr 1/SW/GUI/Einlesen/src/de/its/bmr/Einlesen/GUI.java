@@ -7,6 +7,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -234,12 +236,17 @@ public class GUI extends javax.swing.JFrame {
         // Dialog zum Oeffnen von Dateien anzeigen
         int rueckgabeWert = chooser.showOpenDialog(null);
 
+        FileFilter filter = new FileNameExtensionFilter("Data", "csv", "json");
+        chooser.setFileFilter(filter);
+        chooser.setFileHidingEnabled(true);
+        
         /* Abfrage, ob auf "Öffnen" geklickt wurde */
         if (rueckgabeWert == JFileChooser.APPROVE_OPTION) {
             PersDB = new PersonenListeFactory(chooser.getSelectedFile().getAbsolutePath()).create();
             PersDB.loadData();
             //jListData.setListData(p.getArray());
             DefaultListModel listModel = new DefaultListModel();
+            PersDB.getPersonen().sort(PersonComparator.ASC);
             listModel.addAll(PersDB.getPersonen());
             jListData.setModel(listModel);
         }
@@ -268,6 +275,7 @@ public class GUI extends javax.swing.JFrame {
             PersDB.saveData(PersDB.getPersonen());
 
             DefaultListModel listModel = new DefaultListModel();
+            PersDB.getPersonen().sort(PersonComparator.ASC);
             listModel.addAll(PersDB.getPersonen());
             jListData.setModel(listModel);
         }
