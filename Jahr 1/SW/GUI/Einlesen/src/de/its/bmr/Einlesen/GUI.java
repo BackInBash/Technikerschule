@@ -9,6 +9,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -63,10 +64,10 @@ public class GUI extends javax.swing.JFrame {
         jScrollPane9 = new javax.swing.JScrollPane();
         jPhone = new javax.swing.JTextPane();
         jLoad = new javax.swing.JButton();
-        jScrollPane10 = new javax.swing.JScrollPane();
-        jListData = new javax.swing.JList();
         btnAdd = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        jPersonTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -109,14 +110,6 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        jListData.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jListData.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                jListDataValueChanged(evt);
-            }
-        });
-        jScrollPane10.setViewportView(jListData);
-
         btnAdd.setText("Add");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,32 +124,42 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
+        jPersonTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "ID", "Vorname", "Nachname"
+            }
+        ));
+        jPersonTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPersonTableMouseClicked(evt);
+            }
+        });
+        jScrollPane10.setViewportView(jPersonTable);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
+                        .addGap(28, 28, 28)
                         .addComponent(btnAdd)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnDelete)
                         .addGap(18, 18, 18)
                         .addComponent(jLoad, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                            .addComponent(jScrollPane3))
-                        .addContainerGap(69, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -164,25 +167,30 @@ public class GUI extends javax.swing.JFrame {
                                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGap(0, 49, Short.MAX_VALUE))
+                                .addGap(0, 51, Short.MAX_VALUE))
                             .addComponent(jScrollPane4))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(17, 17, 17))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                            .addComponent(jScrollPane8)
-                            .addComponent(jScrollPane7)
-                            .addComponent(jScrollPane6))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel8)
+                        .addComponent(jLabel7)
+                        .addComponent(jLabel5)
+                        .addComponent(jLabel6)
+                        .addComponent(jScrollPane2)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane9)
+                        .addComponent(jScrollPane8)
+                        .addComponent(jScrollPane7)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(24, 24, 24))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -217,13 +225,13 @@ public class GUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(46, 46, 46)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLoad)
                             .addComponent(btnAdd)
-                            .addComponent(btnDelete))))
-                .addContainerGap(26, Short.MAX_VALUE))
+                            .addComponent(btnDelete)
+                            .addComponent(jLoad))))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
@@ -248,27 +256,13 @@ public class GUI extends javax.swing.JFrame {
             DefaultListModel listModel = new DefaultListModel();
             PersDB.getPersonen().sort(PersonComparator.ASC);
             listModel.addAll(PersDB.getPersonen());
-            jListData.setModel(listModel);
+            jPersonTable.setModel(new PersonenTableModel(PersDB.getPersonen()));
         }
     }//GEN-LAST:event_jLoadActionPerformed
 
-    private void jListDataValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListDataValueChanged
-        // TODO add your handling code here:
-        if (jListData.getSelectedValue() != null) {
-            Person p = (Person) jListData.getSelectedValue();
-            jFirstName.setText(p.getFirstName());
-            jLastName.setText(p.getLastName());
-            jStreet.setText(p.getStreet());
-            jNumber.setText(String.valueOf(p.getNumber()));
-            jPostalCode.setText(String.valueOf(p.getPostalCode()));
-            jBirthdate.setText(p.getBirthDate().toString());
-            jCity.setText(p.getCiry());
-            jPhone.setText(p.getPhoneNr());
-        }
-    }//GEN-LAST:event_jListDataValueChanged
-
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
+        /*
         if (jListData.getSelectedValue() != null) {
             Person person = (Person) jListData.getSelectedValue();
             PersDB.remove(person);
@@ -279,6 +273,7 @@ public class GUI extends javax.swing.JFrame {
             listModel.addAll(PersDB.getPersonen());
             jListData.setModel(listModel);
         }
+        */
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -296,6 +291,20 @@ public class GUI extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnAddActionPerformed
+
+    private void jPersonTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPersonTableMouseClicked
+        if (jPersonTable.getSelectedRow() != -1) {
+            Person p = (Person) PersDB.getPersonen().get(jPersonTable.getSelectedRow());
+            jFirstName.setText(p.getFirstName());
+            jLastName.setText(p.getLastName());
+            jStreet.setText(p.getStreet());
+            jNumber.setText(String.valueOf(p.getNumber()));
+            jPostalCode.setText(String.valueOf(p.getPostalCode()));
+            jBirthdate.setText(p.getBirthDate().toString());
+            jCity.setText(p.getCiry());
+            jPhone.setText(p.getPhoneNr());
+        }
+    }//GEN-LAST:event_jPersonTableMouseClicked
 
     /**
      * @param args the command line arguments
@@ -347,9 +356,9 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JTextPane jLastName;
-    private javax.swing.JList jListData;
     private javax.swing.JButton jLoad;
     private javax.swing.JTextPane jNumber;
+    private javax.swing.JTable jPersonTable;
     private javax.swing.JTextPane jPhone;
     private javax.swing.JTextPane jPostalCode;
     private javax.swing.JScrollPane jScrollPane10;
