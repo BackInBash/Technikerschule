@@ -8,7 +8,7 @@ Speicher Shelves die per SAS an einen Server angeschlossen werden können.
 
 ![](https://tse4.mm.bing.net/th?id=OIP.ypkhMcpfmoNGtNxnW_glAwHaCm&pid=Api)
 
-**Storage Access Network (SAN)**:
+**Storage Area Network (SAN)**:
 
 Mehrere Server die über DAS Verbundene Storage Shelves verfügen und untereinander mit Fiber Channel verbunden sind. Dadurch ergeben sich hohe speicher kapazitäten, gute IOps werde und hochverfügbarkeit.
 
