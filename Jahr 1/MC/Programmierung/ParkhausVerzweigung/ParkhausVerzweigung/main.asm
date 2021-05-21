@@ -32,7 +32,7 @@ main:
 	and R18, R16 ; Mask Results
 	and R19, R17
 	
-	// Shift High Nibbl
+	; Shift High Nibbl
 	lsr R19
 	lsr R19
 	lsr R19
@@ -40,12 +40,12 @@ main:
 
 	sub R18, R19 ; Add both results
 
-	// Check Zero Flag
+	; Check Zero Flag
 	brbs 1, alarm
 	keinalarm:
-		// No alarm
+		; No alarm
 		jmp end
 	alarm:
-		// ALARM!!!
+		; ALARM!!!
 		out PORTB, R20 ; Write results to PORTB
 end:
