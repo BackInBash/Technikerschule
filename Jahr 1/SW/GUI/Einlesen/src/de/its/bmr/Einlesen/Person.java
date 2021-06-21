@@ -28,6 +28,7 @@ public class Person {
     private String city;
     @SerializedName(value = "phone")
     private String phoneNr;
+    private String personID;
 
     public Person(String firstName, String lastName, int number, String street, Date birthDate, int postalCode, String ciry, String phoneNr) {
         this.firstName = firstName;
@@ -39,7 +40,55 @@ public class Person {
         this.city = ciry;
         this.phoneNr = phoneNr;
     }
+    
+    public Person(String personID){
+        this.personID = personID;
+    }
+    
+    // Builder Patter
+    public Person FirstName(String firstName){
+        this.firstName = firstName;
+        return this;
+    }
+    
+    public Person LastName(String lastName){
+        this.lastName = lastName;
+        return this;
+    }
+    
+    public Person Number(int number){
+        this.number = number;
+        return this;
+    }
+    
+    public Person Street(String street){
+        this.street = street;
+        return this;
+    }
+    
+    public Person BirthDate(Date date){
+        this.birthDate = date;
+        return this;
+    }
+    
+    public Person PosalCode(int postalCode){
+        this.postalCode = postalCode;
+        return this;
+    }
+    
+    public Person City(String city){
+        this.city = city;
+        return this;
+    }
+    
+    public Person PhoneNumber(String phoneNumber){
+        this.phoneNr = phoneNumber;
+        return this;
+    }
 
+    
+    // Getter
+    
     public String getStreet() {
         return street;
     }
@@ -70,6 +119,10 @@ public class Person {
 
     public String getPhoneNr() {
         return phoneNr;
+    }
+    
+    public String getPersonID(){
+        return this.personID;
     }
 
     public void setFirstName(String firstName) {
