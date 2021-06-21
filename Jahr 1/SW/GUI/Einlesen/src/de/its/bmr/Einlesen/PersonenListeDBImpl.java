@@ -40,7 +40,7 @@ public class PersonenListeDBImpl implements PersonenListe {
         ArrayList<String> tables = new ArrayList<String>();
         tables.add("CREATE TABLE IF NOT EXISTS  Personen  (\n"
                 + "	 PersonenID 	INT NOT NULL PRIMARY KEY AUTO_INCREMENT,\n"
-                + "	 FirstName 	TEXT NOT NULL,\n"
+                + "	 FirstName 	    TEXT NOT NULL,\n"
                 + "	 LastName       TEXT NOT NULL,\n"
                 + "	 Number         INT NOT NULL TEXT\n"
                 + "	 Street         TEXT NOT NULL,\n"
@@ -151,7 +151,7 @@ public class PersonenListeDBImpl implements PersonenListe {
         openConnection();
         PreparedStatement stm = null;
         try {
-            String sql = "SELECT * FROM Schaf ORDER BY DatumZugang DESC;";
+            String sql = "SELECT * FROM Personen;";
             stm = conn.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
 
