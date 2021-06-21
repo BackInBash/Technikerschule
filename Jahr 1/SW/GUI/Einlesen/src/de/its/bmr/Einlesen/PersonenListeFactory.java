@@ -20,6 +20,9 @@ public class PersonenListeFactory {
         if (path.endsWith(".json")) {
             p = new PersonenListeJSONImpl(path);
         }
+        if(path.equals("DB")){
+            p = new PersonenListeDBImpl();
+        }
     }
 
     public PersonenListe create() {
