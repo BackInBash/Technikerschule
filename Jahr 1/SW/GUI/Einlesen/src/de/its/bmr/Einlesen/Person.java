@@ -105,7 +105,11 @@ public class Person {
         return number;
     }
 
-    public Date getBirthDate() {
+    public java.sql.Date getSQLBirthDate() {
+        return new java.sql.Date(birthDate.getDate());
+    }
+    
+    public Date getBirthDate(){
         return birthDate;
     }
 

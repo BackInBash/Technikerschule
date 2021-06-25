@@ -18,16 +18,14 @@ public class PersonenListeDBImpl implements PersonenListe {
 
     private ArrayList<Person> personen = new ArrayList<Person>();
     private Connection conn = null;
-    private static final String JDBCString = "jdbc:mysql://127.0.0.1/personen?user=root&password=toor";
+    private static final String JDBCString = "jdbc:mysql://127.0.0.1/personen";
+    private static final String Username = "root";
+    private static final String Password = "Stern123";
 
     public PersonenListeDBImpl() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(PersonenListeDBImpl.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(PersonenListeDBImpl.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(PersonenListeDBImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -40,17 +38,17 @@ public class PersonenListeDBImpl implements PersonenListe {
         ArrayList<String> tables = new ArrayList<String>();
         tables.add("CREATE TABLE IF NOT EXISTS  Personen  (\n"
                 + "	 PersonenID 	INT NOT NULL PRIMARY KEY AUTO_INCREMENT,\n"
-                + "	 FirstName 	    TEXT NOT NULL,\n"
-                + "	 LastName       TEXT NOT NULL,\n"
-                + "	 Number         INT NOT NULL TEXT\n"
-                + "	 Street         TEXT NOT NULL,\n"
-                + "	 BirthDate      DATE NOT NULL,\n"
-                + "	 PostalCode     INT NOT NULL,\n"
-                + "	 City           TEXT NOT NULL,\n"
-                + "	 PhoneNumber    TEXT NOT NULL,\n"
+                + "	 FirstName 	TEXT,\n"
+                + "	 LastName       TEXT,\n"
+                + "	 Number         INT,\n"
+                + "	 Street         TEXT,\n"
+                + "	 BirthDate      DATE,\n"
+                + "	 PostalCode     INT,\n"
+                + "	 City           TEXT,\n"
+                + "	 PhoneNumber    TEXT\n"
                 + ");");
 
-        try (Connection conn = DriverManager.getConnection(JDBCString);
+        try (Connection conn = DriverManager.getConnection(JDBCString, Username, Password);
                 Statement stmt = conn.createStatement()) {
             // create a new table
             for (String sql : tables) {
@@ -67,7 +65,7 @@ public class PersonenListeDBImpl implements PersonenListe {
             try {
                 // Initialize new SQL DB
                 init();
-                conn = DriverManager.getConnection(JDBCString);
+                conn = DriverManager.getConnection(JDBCString, Username, Password);
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
                 if (conn != null) {
@@ -94,26 +92,21 @@ public class PersonenListeDBImpl implements PersonenListe {
         openConnection();
         PreparedStatement stm = null;
         try {
-            stm = conn.prepareStatement("INSERT INTO Personen(FirstName, LastName, Number, Street, BirthDate, PostalCode, PhoneNumber) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            stm = conn.prepareStatement("INSERT INTO Personen(FirstName, LastName, Number, Street, BirthDate, PostalCode, City, PhoneNumber) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 
             stm.setString(1, person.getFirstName());
             stm.setString(2, person.getLastName());
             stm.setInt(3, person.getNumber());
             stm.setString(4, person.getStreet());
-            stm.setDate(5, (Date) person.getBirthDate());
+            stm.setDate(5, person.getSQLBirthDate());
             stm.setInt(6, person.getPostalCode());
-            stm.setString(7, person.getPhoneNr());
+            stm.setString(7, person.getCiry());
+            stm.setString(8, person.getPhoneNr());
 
             stm.executeUpdate();
 
         } catch (SQLException ex) {
             Logger.getLogger(PersonenListeDBImpl.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                conn.commit();
-            } catch (SQLException ex) {
-                Logger.getLogger(PersonenListeDBImpl.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
     }
 
@@ -131,12 +124,6 @@ public class PersonenListeDBImpl implements PersonenListe {
 
         } catch (SQLException ex) {
             Logger.getLogger(PersonenListeDBImpl.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                conn.commit();
-            } catch (SQLException ex) {
-                Logger.getLogger(PersonenListeDBImpl.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
     }
 

@@ -68,6 +68,8 @@ public class GUI extends javax.swing.JFrame {
         btnDelete = new javax.swing.JButton();
         jScrollPane10 = new javax.swing.JScrollPane();
         jPersonTable = new javax.swing.JTable();
+        jdbload = new javax.swing.JButton();
+        jdbsave = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -142,22 +144,27 @@ public class GUI extends javax.swing.JFrame {
         });
         jScrollPane10.setViewportView(jPersonTable);
 
+        jdbload.setText("DB Load");
+        jdbload.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jdbloadActionPerformed(evt);
+            }
+        });
+
+        jdbsave.setText("DB Save");
+        jdbsave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jdbsaveActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(btnAdd)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnDelete)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLoad, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap()
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -186,6 +193,18 @@ public class GUI extends javax.swing.JFrame {
                         .addComponent(jScrollPane7)
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(24, 24, 24))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(btnAdd)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnDelete)
+                .addGap(18, 18, 18)
+                .addComponent(jLoad, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jdbload)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jdbsave)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,14 +243,15 @@ public class GUI extends javax.swing.JFrame {
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnAdd)
-                            .addComponent(btnDelete)
-                            .addComponent(jLoad))))
-                .addContainerGap(37, Short.MAX_VALUE))
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAdd)
+                    .addComponent(btnDelete)
+                    .addComponent(jLoad)
+                    .addComponent(jdbload)
+                    .addComponent(jdbsave))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
@@ -247,7 +267,7 @@ public class GUI extends javax.swing.JFrame {
         FileFilter filter = new FileNameExtensionFilter("Data", "csv", "json");
         chooser.setFileFilter(filter);
         chooser.setFileHidingEnabled(true);
-        
+
         /* Abfrage, ob auf "Öffnen" geklickt wurde */
         if (rueckgabeWert == JFileChooser.APPROVE_OPTION) {
             PersDB = new PersonenListeFactory(chooser.getSelectedFile().getAbsolutePath()).create();
@@ -273,7 +293,7 @@ public class GUI extends javax.swing.JFrame {
             listModel.addAll(PersDB.getPersonen());
             jListData.setModel(listModel);
         }
-        */
+         */
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -305,6 +325,25 @@ public class GUI extends javax.swing.JFrame {
             jPhone.setText(p.getPhoneNr());
         }
     }//GEN-LAST:event_jPersonTableMouseClicked
+
+    private void jdbloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jdbloadActionPerformed
+        // TODO add your handling code here:
+        PersDB = new PersonenListeFactory("DB").create();
+        PersDB.loadData();
+        //jListData.setListData(p.getArray());
+        DefaultListModel listModel = new DefaultListModel();
+        PersDB.getPersonen().sort(PersonComparator.ASC);
+        listModel.addAll(PersDB.getPersonen());
+        jPersonTable.setModel(new PersonenTableModel(PersDB.getPersonen()));
+    }//GEN-LAST:event_jdbloadActionPerformed
+
+    private void jdbsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jdbsaveActionPerformed
+        // TODO add your handling code here:
+        PersonenListe pDB = new PersonenListeFactory("DB").create();
+        for (Person pers : PersDB.getPersonen()) {
+            pDB.add(pers);
+        }
+    }//GEN-LAST:event_jdbsaveActionPerformed
 
     /**
      * @param args the command line arguments
@@ -371,5 +410,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTextPane jStreet;
+    private javax.swing.JButton jdbload;
+    private javax.swing.JButton jdbsave;
     // End of variables declaration//GEN-END:variables
 }
