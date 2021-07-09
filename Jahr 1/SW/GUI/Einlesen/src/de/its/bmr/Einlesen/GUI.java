@@ -282,18 +282,18 @@ public class GUI extends javax.swing.JFrame {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        /*
-        if (jListData.getSelectedValue() != null) {
-            Person person = (Person) jListData.getSelectedValue();
+        
+        if (jPersonTable.getSelectedColumn() != -1) {
+            Person person = (Person) PersDB.getPersonen().get(jPersonTable.getColumnCount());
             PersDB.remove(person);
             PersDB.saveData(PersDB.getPersonen());
 
             DefaultListModel listModel = new DefaultListModel();
             PersDB.getPersonen().sort(PersonComparator.ASC);
             listModel.addAll(PersDB.getPersonen());
-            jListData.setModel(listModel);
+            jPersonTable.setModel(new PersonenTableModel(PersDB.getPersonen()));
         }
-         */
+         
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed

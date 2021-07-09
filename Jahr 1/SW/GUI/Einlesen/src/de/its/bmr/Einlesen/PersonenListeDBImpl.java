@@ -61,28 +61,32 @@ public class PersonenListeDBImpl implements PersonenListe {
     }
 
     private void openConnection() {
-        if (conn == null) {
-            try {
-                // Initialize new SQL DB
-                init();
-                conn = DriverManager.getConnection(JDBCString, Username, Password);
-            } catch (SQLException e) {
-                System.out.println(e.getMessage());
-                if (conn != null) {
-                    try {
-                        conn.close();
-                    } catch (SQLException ex) {
-                        System.out.println(ex.getMessage());
+        try {
+            if (conn == null || conn.isClosed()) {
+                try {
+                    // Initialize new SQL DB
+                    init();
+                    conn = DriverManager.getConnection(JDBCString, Username, Password);
+                } catch (SQLException e) {
+                    System.out.println(e.getMessage());
+                    if (conn != null) {
+                        try {
+                            conn.close();
+                        } catch (SQLException ex) {
+                            System.out.println(ex.getMessage());
+                        }
                     }
-                }
-                if (conn != null) {
-                    try {
-                        conn.close();
-                    } catch (SQLException ex) {
-                        System.out.println(ex.getMessage());
+                    if (conn != null) {
+                        try {
+                            conn.close();
+                        } catch (SQLException ex) {
+                            System.out.println(ex.getMessage());
+                        }
                     }
                 }
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(PersonenListeDBImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -116,7 +120,7 @@ public class PersonenListeDBImpl implements PersonenListe {
         openConnection();
         PreparedStatement stm = null;
         try {
-            stm = conn.prepareStatement("DELETE FROM Personen WHERE PersonID = ?");
+            stm = conn.prepareStatement("DELETE FROM Personen WHERE PersonenID = ?");
 
             stm.setString(1, person.getPersonID());
 
