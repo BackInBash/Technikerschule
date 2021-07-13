@@ -28,25 +28,35 @@ init:
 main:
 	; Geschlossen Einlesen
 	in R20, PIND
-	andi R20, 0b00000100
+	andi R20, 0b00000100 ; Bit Mask Geschlossen
+	subi R20, 0b00000100 ; R20 - 1 = 0
+	brbc 1, main ; Jump if not Zero
+
 	; Abgasalarm Einlesen
 	in R21, PIND
-	andi R21, 0b00001000 
+	andi R21, 0b00001000 ; Bit Mask Abgasalarm
+	subi R21, 0b000001000 ; R21 - 1 = 0
+	brbc 1, main ; Jump If not Zero
+
 	; Belegt Berechnen
-	andi R22, 0xF
-	brbc 1, einfahrt
+	andi R22, 0xF ; Check If R22 is 15 (ParkHaus voll)
+	brbs 1, einfahrt ; Jump if not full
 	rjmp main
 
 einfahrt:
 	ldi R17, 0x00 ; Set Local 
-	in R17, PINA  ; Load Value PINA
+	in R17, PIND  ; Load Value PINA
 
 	; TasterEinfahrtZuweisung
 	; R17 0bX0000000
 	andi R17, 0b10000000
+	brbc 1, einfahrt ; Jump if not Zero
+
+	in R17, PIND
+	andi R17, 0b01000000
 	
-	subi R17, R20 ; Einfahrt - Geschlossen
-	brbc 1, R17
+	;subi R17, R20 ; Einfahrt - Geschlossen
+	;brbc 1, R17
 
 	; LichtschrankeEinfahrtZuwesiung
 	; R17 0b0X000000
@@ -58,4 +68,3 @@ einfahrt:
 	istGeschlossen:
 
 ausfahrt:
-
