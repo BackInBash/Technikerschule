@@ -1,0 +1,45 @@
+version: "3"
+
+services:
+  db:
+    image: mariadb:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: passw0rd
+      MYSQL_DATABASE: powerdns
+      MYSQL_USER: dns
+      MYSQL_PASSWORD: passw0rd
+    
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+
+  dns:
+    image: psitrax/powerdns:latest
+    container_name: powerdns
+    ports:
+      - "53:53"
+      - "53:53/udp"
+      - "8081:8081"
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_USER=root
+      - MYSQL_PASS=passw0rd
+      - MYSQL_PORT=3306
+    volumes:
+      - "./pdns.confd:/etc/pdns/conf.d"
+
+  dnsWeb:
+    image: ngoduykhanh/powerdns-admin:latest
+    container_name: powerdns_admin
+    ports:
+      - "9191:80"
+    logging:
+      driver: json-file
+      options:
+        max-size: 50m
+    environment:
+      - SQLALCHEMY_DATABASE_URI=mysql://root:passw0rd@db/pdns
+      - GUNICORN_TIMEOUT=60
+      - GUNICORN_WORKERS=2
+      - GUNICORN_LOGLEVEL=DEBUG
+      - OFFLINE_MODE=False # True for offline, False for external resources
