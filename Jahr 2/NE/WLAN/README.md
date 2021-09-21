@@ -8,6 +8,8 @@ Controller angebunden, dieser übernimmt dann die Koniguration der einzelnen APs
 1. AP Konfiguration
 1. Management
 
+![](WLAN-Controller_lokal.png)
+
 ## Netzwerk Setup
 Für ein Controller basiertes Setup wird ein eigenes Management Netzwerk für die Kommunikation der APs mit dem Controller empfohlen.
 Da in diesem Netz ein DHCP Server eingerichtet werden muss, der die APs mit IP Adressen versorgt um die interne Kommunikation mit dem Controller herzustellen.
