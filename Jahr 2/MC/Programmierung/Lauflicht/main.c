@@ -21,11 +21,11 @@ int main(void)
     while(1)
     {
         DDRA = 0xff;
-        for(int a = 0; a <= 8; a++){
-        PORTA = pow(2, a++);
-		
-		long_delay(50);
-		}
+        
+	for(int a = 0; a <= 8; a++){
+           PORTA = pow(2, a++);
+	   long_delay(50);
+	}
 
         PORTA = 0x00;   
     }
