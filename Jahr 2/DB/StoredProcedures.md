@@ -1,5 +1,5 @@
 # Stored Procedures
-Stored Procedures sind SQL Queries die auf dem Server abgespeicehrt sind. Vorteile und Funktionalitäten von Stored Procedures sind:
+Stored Procedures sind SQL Queries die auf dem Server abgespeichert sind. Vorteile und Funktionalitäten von Stored Procedures sind:
 ### Funktionalitäten
 + Es können Übergabeparamter übergeben werden
 + Es können Statements eingebaut werden wie `IF` `CASE` oder `LOOP`
