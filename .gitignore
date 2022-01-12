@@ -97,3 +97,10 @@ fabric.properties
 Jahr 1/SW/GUI/KontoVerwaltung/target/classes/.netbeans_automatic_build
 Jahr 1/SW/GUI/KontoVerwaltung/target/test-classes/.netbeans_automatic_build
 /Jahr 2/SW/SekilaServer/target/
+Jahr 2/CS/Docker/mysql-data/aria_log.00000001
+Jahr 2/CS/Docker/mysql-data/aria_log_control
+Jahr 2/CS/Docker/mysql-data/ib_buffer_pool
+Jahr 2/CS/Docker/mysql-data/ib_logfile0
+Jahr 2/CS/Docker/mysql-data/ibdata1
+Jahr 2/CS/Docker/mysql-data/ibtmp1
+Jahr 2/CS/Docker/mysql-data/multi-master.info
