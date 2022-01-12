@@ -1,5 +1,5 @@
 # Docker Container Plattform
-Docker ist ein Open Source-Projekt zur Automatisierung der Bereitstellung von Apps als mobile, eigenständige Container, die in der Cloud oder lokal ausgeführt werden können. Docker ist darüber hinaus ein Unternehmen, das diese Technologie fördert und weiterentwickelt und mit Cloud-, Linux- und Windows kompatiebel ist.
+Docker ist ein Open Source-Projekt zur Automatisierung der Bereitstellung von Apps als mobile, eigenständige Container, die in der Cloud oder lokal ausgeführt werden können. Docker ist darüber hinaus ein Unternehmen, das diese Technologie fördert und weiterentwickelt und mit Cloud-Anbietern, Linux und Windows kompatiebel ist.
 
 Dabei stellen Container eigenständige und abgeschottete Laufzeitumgebungen für Anwendungen verschiedenster art dar.
 Container und die dazugehörigen Container Images basieren auf dem OCI (Open Container Initiative) Standard und sind somit nicht nur mit Docker Kompatiebel.
@@ -13,9 +13,11 @@ Containervirtualisierung beschriebt eine form der Virualisierung, beider auf dem
 <img src="https://miro.medium.com/max/700/1*V7cmO3r2-UN5OsCzrXtUxw.png" width="70%">
 
 Der Vorteil dieser Virtualisierungesmethode, ist der um ein vielfaches veringerte Overhead im Vergleich zu KVM (Kernel Virtuell Machine).
-Da bei einer Container Virtualisierung im direkten vergleich der Kernel des Host OS verwendet wird und die Ressourcen des Systems nur abstrahiert und nicht virtualisiert werden. Somit kann bei Containern auf ein eigenes Betriebssystem im klassischen Sinne verzichtet werden.
+Da bei einer Container Virtualisierung im direkten vergleich der Kernel des Host OS verwendet wird und die Ressourcen des Systems nur abstrahiert und nicht virtualisiert werden. 
+
+Somit kann bei Containern auf ein eigenes Betriebssystem im klassischen Sinne verzichtet werden.
 Es muss lediglich eine Lafzeitumgebung mitbegeben werden um die entsprechende Anwendung ausführen zu können.
-Somit kann die Hardware optimal ausgenutzt werden.
+Somit kann die Hardware optimal ausgenutzt und der Wartungsaufwand deutlich reduziert werden.
 
 <img src="https://artbio.github.io/Run-Galaxy/images/docker.png" width="70%">
 
@@ -252,4 +254,95 @@ volumes:
 
 ## Docker Volumes
 
+Docker Volumes bieten die Möglichkeit anfallende Persistente Daten in einem Container zu speichern.
+Volumes werden komplett durch Docker verwaltet und sind damit der Ofiziell Empfohlene weg Persistente Daten abzuspeichern.
+
++ Anzeigen bestehender Volumes
+    ```bash
+    C:\Users\Markus>docker volume ls
+    DRIVER    VOLUME NAME
+    local     256895275dee26176790078f8470e124671e3f74abf7fb5f84e36aaa8f8e6a78
+    local     c3687c2c12df99cfcbb6b725d57facf0e678ae776fdd6009009b7571ca1968cb
+    local     telly.config.toml
+    local     vscode
+    ```
+
++ Anlegen eines neuen Volumes
+    ```bash
+    docker volume create data
+    ```
+
+Docker bietet auch die Möglichkeit andere Storage Dirver anzusprechen. Somit ist es Möglich die Volumes auf anderen Storage Medien zu speichern.
+Von Haus aus unterstützt Docker die folgenden Stroage Drivers:
++ Eine [Liste](https://docs.docker.com/storage/storagedriver/select-storage-driver/) mit eingebauten Storage Drivern
++ Eine [Liste](https://docs.docker.com/engine/extend/legacy_plugins/#volume-plugins) mit 3rd-party Storage Drivern
+
 ## Docker Networking
+Um die Container untereinander zu vernetzen bietet Docker die Möglichkeit über Bridges auf dem Hostsystem Container miteinander zu Verbinden.
+
++ Auslisten aller Netzwerke auf dem Host
+    ```bash
+    C:\Users\Markus>docker network ls
+    NETWORK ID     NAME      DRIVER    SCOPE
+    fa8c5ca426e1   bridge    bridge    local
+    f9f00956c91d   host      host      local
+    679b81f531b8   none      null      local
+    ```
+
++ Anlegen eines neues Netzwerks
+    ```bash
+    docker network create --driver bridge new-network
+    ```
+    > Mit dem Parameter `--driver | -d` kann der Netzwerk Driver angegeben werden.
+
++ Konfiguration der Standard Bridge
+    ```bash
+    C:\Users\Markus>docker network inspect bridge
+    [
+        {
+            "Name": "bridge",
+            "Id": "fa8c5ca426e18372730c1dce298ddf97862c8574cf2e71e58ed9f5a584948158",
+            "Created": "2022-01-12T14:58:18.607125133Z",
+            "Scope": "local",
+            "Driver": "bridge",
+            "EnableIPv6": false,
+            "IPAM": {
+                "Driver": "default",
+                "Options": null,
+                "Config": [
+                    {
+                        "Subnet": "172.17.0.0/16",
+                        "Gateway": "172.17.0.1"
+                    }
+                ]
+            },
+            "Internal": false,
+            "Attachable": false,
+            "Ingress": false,
+            "ConfigFrom": {
+                "Network": ""
+            },
+            "ConfigOnly": false,
+            "Containers": {},
+            "Options": {
+                "com.docker.network.bridge.default_bridge": "true",
+                "com.docker.network.bridge.enable_icc": "true",
+                "com.docker.network.bridge.enable_ip_masquerade": "true",
+                "com.docker.network.bridge.host_binding_ipv4": "0.0.0.0",
+                "com.docker.network.bridge.name": "docker0",
+                "com.docker.network.driver.mtu": "1500"
+            },
+            "Labels": {}
+        }
+    ]
+    ```
+
+Bei einem durch Docker verwalteten Netzwerk, erfolgt die IP Adressvergabe eigenständig durch Docker. Ebenso wie eine DNS Namenvergabe jeder Name eines Containers ist im Docker Netzwerk per DNS auflößbar. Somit ist es möglich Container nach ihrem Namen im Netzwerk aufzurufen.
+
+Es existieren auch noch einige andere Netzwermodelle, diese können [hier](https://docs.docker.com/network/#network-drivers) eingesehen werden.
+
+> Mit Docker Swarm, lassen sich mehrere Docker Dienste zu einem Verbund zusammenschalten und somit können die Container auch Hostübergreifend miteinander Kommunizieren.
+> 
+> Übersicht Overlay Netzwerke: https://docs.docker.com/network/overlay/
+>
+> Beispielkonfiguration: https://docs.docker.com/network/network-tutorial-overlay/
