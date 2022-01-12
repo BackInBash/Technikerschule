@@ -1,74 +1,74 @@
 # Docker Container Plattform
-Docker ist ein Open Source-Projekt zur Automatisierung der Bereitstellung von Apps als mobile, eigenständige Container, die in der Cloud oder lokal ausgeführt werden können. Docker ist darüber hinaus ein Unternehmen, das diese Technologie fördert und weiterentwickelt und mit Cloud-Anbietern, Linux und Windows kompatiebel ist.
+Docker ist ein Open Source-Projekt zur Automatisierung der Bereitstellung von Apps als mobile, eigenständige Container, die in der Cloud oder lokal ausgeführt werden können. Docker ist darüber hinaus ein Unternehmen, das diese Technologie fördert und weiterentwickelt und mit Cloud-Anbietern, Linux und Windows kompatibel ist.
 
-Dabei stellen Container eigenständige und abgeschottete Laufzeitumgebungen für Anwendungen verschiedenster art dar.
-Container und die dazugehörigen Container Images basieren auf dem OCI (Open Container Initiative) Standard und sind somit nicht nur mit Docker Kompatiebel.
-Docker ist vielmehr nur das zugehörige Verwaltungswerkzeug um die darunterliegende Container Infrastruktur zu verwalten.
-Docker bietet dabei die Möglichkeiten Container anzulegen, zu starten / stoppen oder zu löschen. Es konnen neue Images erstellt und bestehende Images verwaltet werden, lokal oder remote in sogenannten Container Registries (z.B. hub.docker.com)
+Dabei stellen Container eigenständige und abgeschottete Laufzeitumgebungen für Anwendungen verschiedenster Art dar.
+Container und die dazugehörigen Container Images basieren auf dem OCI (Open Container Initiative) Standard und sind somit nicht nur mit Docker kompatiebel.
+Docker ist vielmehr nur das zugehörige Verwaltungswerkzeug, um die darunterliegende Container Infrastruktur zu verwalten.
+Docker bietet dabei die Möglichkeiten, Container anzulegen, zu starten / stoppen oder zu löschen. Es können neue Images erstellt und bestehende Images verwaltet werden, lokal oder remote in sogenannten Container Registries (z.B. hub.docker.com)
 
 
 ## Containervirtualisierung
-Containervirtualisierung beschriebt eine form der Virualisierung, beider auf dem Host System mittels PID Namespacing im Linux-Kernel eine eigene Laufzeitumgebung geschaffen wird. Inder Anwendungen abgeschottet vom restlichen System betrieben werden können.
+Containervirtualisierung beschriebt eine Form der Virtualisierung beider auf dem Host System mittels PID Namespacing im Linux-Kernel eine eigene Laufzeitumgebung geschaffen wird. Inder Anwendungen abgeschottet vom restlichen System betrieben werden können.
 
 <img src="https://miro.medium.com/max/700/1*V7cmO3r2-UN5OsCzrXtUxw.png" width="70%">
 
-Der Vorteil dieser Virtualisierungesmethode, ist der um ein vielfaches veringerte Overhead im Vergleich zu KVM (Kernel Virtuell Machine).
-Da bei einer Container Virtualisierung im direkten vergleich der Kernel des Host OS verwendet wird und die Ressourcen des Systems nur abstrahiert und nicht virtualisiert werden. 
+Der Vorteil dieser Virtualisierungesmethode, ist der um ein Vielfaches verringerter Overhead im Vergleich zu KVM.
+Da bei einer Container Virtualisierung im direkten Vergleich der Kernel des Host OS verwendet wird und die Ressourcen des Systems nur abstrahiert und nicht virtualisiert werden.
 
 Somit kann bei Containern auf ein eigenes Betriebssystem im klassischen Sinne verzichtet werden.
-Es muss lediglich eine Lafzeitumgebung mitbegeben werden um die entsprechende Anwendung ausführen zu können.
+Es muss lediglich eine Laufzeitumgebung mitgegeben werden, um die entsprechende Anwendung ausführen zu können.
 Somit kann die Hardware optimal ausgenutzt und der Wartungsaufwand deutlich reduziert werden.
 
 <img src="https://artbio.github.io/Run-Galaxy/images/docker.png" width="70%">
 
-Technologien, die auf diese art der Virtalisierung zurückgreifen sind. **LXC** und **OCI** Container.
+Technologien, die auf diese Art der Virtualisierung zurückgreifen, sind. **LXC** und **OCI** Container.
 
-Bei **LXC** Containern wird ein leichtgewichtiges Linux System Erzeugt, das über tradizionelle Methoden Administriert / verwaltet wird z.B. SSH.
+Bei **LXC** Containern wird ein leichtgewichtiges Linuxsystem erzeugt, das über traditionelle Methoden administriert / verwaltet wird z.B. SSH.
 
-**OCI** Container verfolgen einen anderen Weg, hier geht es darum sehr leichtgewichtige Systme für die Cloud bereitzustellen. Hier liegt der Fokus auf Sicherheit, Performance und Fehlerminimierung.
+**OCI** Container verfolgen einen anderen Weg, hier geht es darum, sehr leichtgewichtige System für die Cloud bereitzustellen. Hier liegt der Fokus auf Sicherheit, Performance und Fehlerminimierung.
 
-Die Container sind weitergehend dazu auch im Hinblick auf die [12 Fakroren](https://12factor.net) im Cloud Umfeld designed, sie sind vorzugsweise Stateless, Skalierbar und im Fehlerfall schnell austauschbar. Eine Manuelle Fehlerbehebung eines einzelnen "bad" Containers ist hier nicht vorgesehen. Vielmehr werden die Container einfach schnell gegen einen neuen Funktionsfähigen Container Ausgetauscht.
+Die Container sind weitergehend dazu auch im Hinblick auf die [12 Faktoren](https://12factor.net) im Cloudumfeld designet, sie sind vorzugsweise Stateless, skalierbar und im Fehlerfall schnell austauschbar. Eine manuelle Fehlerbehebung eines einzelnen "bad" Containers ist hier nicht vorgesehen. Vielmehr werden die Container einfach schnell gegen einen neuen funktionsfähigen Container ausgetauscht.
 
-Gerade im Hinblick auf Kubernetes, ist diese Art der Containerverwaltung die Gundlage eines solchen Konzepts.
+Gerade im Hinblick auf Kubernetes, ist diese Art der Containerverwaltung die Grundlage eines solchen Konzepts.
 
 ## Moby Project
-Das Moby Projekt zufinden auf [Github](https://github.com/moby/moby), stellt die Library dar, die von Docker für die Interaktion mit dem System verwendet wird. Hier ist z.B. der Image Build Prozess abgebildet.
+Das Moby Projekt zu finden auf [Github](https://github.com/moby/moby), stellt die Library dar, die von Docker für die Interaktion mit dem System verwendet wird. Hier ist z.B. der Image Build Prozess abgebildet.
 
 ## ContainerD
-ContainerD ist eine OCI Standartisierte Container Lauzeitumgebung. Diese ist für den eigentlichen Betrieb der Container verantwortlich und steuert diesen Eigenständig.
+ContainerD ist eine OCI standardisierte Container Laufzeitumgebung. Diese ist für den eigentlichen Betrieb der Container verantwortlich und steuert diesen eigenständig.
 
-containerd is an industry-standard container runtime with an emphasis on simplicity, robustness and portability. It is available as a daemon for Linux and Windows, which can manage the complete container lifecycle of its host system: image transfer and storage, container execution and supervision, low-level storage and network attachments, etc.
+>containerd is an industry-standard container runtime with an emphasis on simplicity, robustness and portability. It is available as a daemon for Linux and Windows, which can manage the complete container lifecycle of its host system: image transfer and storage, container execution and supervision, low-level storage and network attachments, etc.
 
-Zufinden ist das Projekt bei [Github](https://github.com/containerd/containerd)
+Zu finden ist das Projekt bei [Github](https://github.com/containerd/containerd)
 
 <img src="https://github.com/containerd/containerd/raw/main/design/architecture.png" width="70%">
 
 
 ## OCI - Open Container Initiative
 Die Open Container Initiative verabschiedet Standards im Bereich Containering.
-Darunter fallen die Spezifikationen der Container und deren Images, damit diese zu den Verschiendenen Systemen interkompatiebel sind.
+Darunter fallen die Spezifikationen der Container und deren Images, damit diese zu den verschiedenen Systemen interkompatibel sind.
 
 ## runc
 `runc` is a CLI tool for spawning and running containers on Linux according to the OCI specification.
-Wird von Docker im hibtergrund verwendet um Container anzulegen und zu verwalten.
-Zufinden bei [Github](https://github.com/opencontainers/runc)
+Wird von Docker im Hintergrund verwendet, um Container anzulegen und zu verwalten.
+Zu finden auf [Github](https://github.com/opencontainers/runc)
 
 ## Docker Image Erstellen
 Um ein Docker Image zu erstellen, wird mit sogenannten Dockerfiles das Image definiert.
-Dieses Dockerfile wird dann dem Build Agnet übergeben,
+Dieses Dockerfile wird dann dem Build Agent übergeben,
 der dann aus dem übergebenen Dockerfile ein OCI Container Image erstellt.
 
 In der Regel sind Dockerfiles in 3 Bereiche aufgeteilt.
 
 **Import**:
-hier werden OS Images (Debian, Alpine, Ubuntu, ...) angegeben bzw. Base Images (Frameworks wie Java, dotNet, NodeJS oder Python) damit wird die
+Hier werden OS Images (Debian, Alpine, Ubuntu, ...) angegeben bzw. Base Images (Frameworks wie Java, dotNet, NodeJS oder Python) damit wird die
 Laufzeitumgebung festgelegt.
 
 **Installation**:
-hier wird die Installationsroutine der Software angegeben z.B. Download von Artefakten oder Kompilierung der Software.
+Hier wird die Installationsroutine der Software angegeben z.B. Download von Artefakten oder Kompilierung der Software.
 
 **Entrypoint**:
-hier wird der Startpunkt der Anwendung festgelegt.
+Hier wird der Startpunkt der Anwendung festgelegt.
 
 Ein beispielhaftes Dockerfile sieht in etwa so aus:
 ```docker
@@ -147,7 +147,7 @@ Im Anschluss kann dann das Dockerfile zu einem Image gebaut werden `docker build
     be47035dd9d3   mariadb:latest                      "docker-entrypoint.s…"   6 months ago   Exited (0) 2 months ago                mariadb
     ```
 
-> Mit dem `-a` Parameter lassen sich auch die Abgeschalteten Container anzeigen.
+> Mit dem `-a` Parameter lassen sich auch die abgeschalteten Container anzeigen.
 
 + Starten neuer Container
 
@@ -174,7 +174,7 @@ docker container rm -f 5793bbed585b
 
 Container ID oder Container Name
 
-> Verwendeter Paramerter `-f` (Force) Löscht den Container auch im Aktiven Zustand.
+> Verwendeter Paramerter `-f` (Force) Löscht den Container auch im aktiven Zustand.
 
 + Vorhandenen Container Starten / Stoppen / Neustarten
 
@@ -192,16 +192,16 @@ Container ID oder Container Name
         ```
 
 ## Docker Compose
-Docker Compose ermöglicht es mehrere Container in einem Deployment zusammenzufassen und die Ressource in diesem Deployment gegenüber anderen Containern abzuschirmen, die dafür notwendigen Schritte werden alle automatisch von Docker Compose übernommen.
+Docker Compose ermöglicht es, mehrere Container in einem Deployment zusammenzufassen und die Ressource in diesem Deployment gegenüber anderen Containern abzuschirmen, die dafür notwendigen Schritte werden alle automatisch von Docker Compose übernommen.
 
-Docker Compose benötigt eine sogenannte `docker-compose.yml` Datei, diese Datei enthällt die Konfiguration des Deployments.
-Durch Docker Compose werden die Folgenden Ressourcen Verwaltet:
+Docker Compose benötigt eine sogenannte `docker-compose.yml` Datei, diese Datei enthält die Konfiguration des Deployments.
+Durch Docker Compose werden die folgenden Ressourcen verwaltet:
 + Container
 + Overlaynetzwerke
 + Volumes
 
 Ein typisches Usecase für Docker Compose wäre eine Webanwendung, bei der eine Datenbank, ein Webserver und ein Anwendungsserver benötigt werden.
-Dabei steuert Docker Compose die Erstellung der Container und deren Persistenden Daten, die Erstellung eines Cloud Netzwerks sowei die automatische Zuseisung des Netzwerks an die Container.
+Dabei steuert Docker Compose die Erstellung der Container und deren persistenten Daten, die Erstellung eines Cloudnetzwerks sowie die automatische Zuweisung des Netzwerks an die Container.
 
 Die `docker-compose.yml` für den oben beschriebenen Usecase sieht wie folgt aus:
 
@@ -254,8 +254,8 @@ volumes:
 
 ## Docker Volumes
 
-Docker Volumes bieten die Möglichkeit anfallende Persistente Daten in einem Container zu speichern.
-Volumes werden komplett durch Docker verwaltet und sind damit der Ofiziell Empfohlene weg Persistente Daten abzuspeichern.
+Docker Volumes bieten die Möglichkeit, anfallende persistente Daten in einem Container zu speichern.
+Volumes werden komplett durch Docker verwaltet und sind damit der offiziell empfohlene weg persistente Daten abzuspeichern.
 
 + Anzeigen bestehender Volumes
     ```bash
@@ -272,15 +272,15 @@ Volumes werden komplett durch Docker verwaltet und sind damit der Ofiziell Empfo
     docker volume create data
     ```
 
-Docker bietet auch die Möglichkeit andere Storage Dirver anzusprechen. Somit ist es Möglich die Volumes auf anderen Storage Medien zu speichern.
-Von Haus aus unterstützt Docker die folgenden Stroage Drivers:
+Docker bietet auch die Möglichkeit, andere Storage Driver anzusprechen. Somit ist es möglich, die Volumes auf anderen Storage Medien zu speichern.
+Von Haus aus unterstützt Docker die folgenden Storage Drivers:
 + Eine [Liste](https://docs.docker.com/storage/storagedriver/select-storage-driver/) mit eingebauten Storage Drivern
 + Eine [Liste](https://docs.docker.com/engine/extend/legacy_plugins/#volume-plugins) mit 3rd-party Storage Drivern
 
 ## Docker Networking
-Um die Container untereinander zu vernetzen bietet Docker die Möglichkeit über Bridges auf dem Hostsystem Container miteinander zu Verbinden.
+Um die Container untereinander zu vernetzen, bietet Docker die Möglichkeit, über Bridges auf dem Hostsystem Container miteinander zu verbinden.
 
-+ Auslisten aller Netzwerke auf dem Host
++ Auflisten aller Netzwerke auf dem Host
     ```bash
     C:\Users\Markus>docker network ls
     NETWORK ID     NAME      DRIVER    SCOPE
@@ -295,7 +295,7 @@ Um die Container untereinander zu vernetzen bietet Docker die Möglichkeit über
     ```
     > Mit dem Parameter `--driver | -d` kann der Netzwerk Driver angegeben werden.
 
-+ Konfiguration der Standard Bridge
++ Konfiguration der Standard Bridge auslesen
     ```bash
     C:\Users\Markus>docker network inspect bridge
     [
@@ -337,11 +337,11 @@ Um die Container untereinander zu vernetzen bietet Docker die Möglichkeit über
     ]
     ```
 
-Bei einem durch Docker verwalteten Netzwerk, erfolgt die IP Adressvergabe eigenständig durch Docker. Ebenso wie eine DNS Namenvergabe jeder Name eines Containers ist im Docker Netzwerk per DNS auflößbar. Somit ist es möglich Container nach ihrem Namen im Netzwerk aufzurufen.
+Bei einem durch Docker verwalteten Netzwerk erfolgt die IP-Adressvergabe eigenständig durch Docker. Ebenso wie eine DNS Namensvergabe jeder Name eines Containers ist im Docker Netzwerk per DNS auflösbar. Somit ist es möglich, Container nach ihrem Namen im Netzwerk aufzurufen.
 
 Es existieren auch noch einige andere Netzwermodelle, diese können [hier](https://docs.docker.com/network/#network-drivers) eingesehen werden.
 
-> Mit Docker Swarm, lassen sich mehrere Docker Dienste zu einem Verbund zusammenschalten und somit können die Container auch Hostübergreifend miteinander Kommunizieren.
+> Mit Docker Swarm, lassen sich mehrere Docker Dienste zu einem Verbund zusammenschalten und somit können die Container auch Hostübergreifend miteinander kommunizieren.
 > 
 > Übersicht Overlay Netzwerke: https://docs.docker.com/network/overlay/
 >
