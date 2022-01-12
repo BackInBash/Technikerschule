@@ -10,7 +10,7 @@ Docker bietet dabei die Möglichkeiten, Container anzulegen, zu starten / stoppe
 ## Containervirtualisierung
 Containervirtualisierung beschriebt eine Form der Virtualisierung beider auf dem Host System mittels PID Namespacing im Linux-Kernel eine eigene Laufzeitumgebung geschaffen wird. Inder Anwendungen abgeschottet vom restlichen System betrieben werden können.
 
-<img src="https://miro.medium.com/max/700/1*V7cmO3r2-UN5OsCzrXtUxw.png" width="70%">
+<img src="pid.png" width="70%">
 
 Der Vorteil dieser Virtualisierungesmethode, ist der um ein Vielfaches verringerter Overhead im Vergleich zu KVM.
 Da bei einer Container Virtualisierung im direkten Vergleich der Kernel des Host OS verwendet wird und die Ressourcen des Systems nur abstrahiert und nicht virtualisiert werden.
@@ -19,7 +19,7 @@ Somit kann bei Containern auf ein eigenes Betriebssystem im klassischen Sinne ve
 Es muss lediglich eine Laufzeitumgebung mitgegeben werden, um die entsprechende Anwendung ausführen zu können.
 Somit kann die Hardware optimal ausgenutzt und der Wartungsaufwand deutlich reduziert werden.
 
-<img src="https://artbio.github.io/Run-Galaxy/images/docker.png" width="70%">
+<img src="container.png" width="70%">
 
 Technologien, die auf diese Art der Virtualisierung zurückgreifen, sind. **LXC** und **OCI** Container.
 
@@ -41,7 +41,7 @@ ContainerD ist eine OCI standardisierte Container Laufzeitumgebung. Diese ist f�
 
 Zu finden ist das Projekt bei [Github](https://github.com/containerd/containerd)
 
-<img src="https://github.com/containerd/containerd/raw/main/design/architecture.png" width="70%">
+<img src="containerd.png" width="70%">
 
 
 ## OCI - Open Container Initiative
