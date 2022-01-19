@@ -64,3 +64,15 @@ Passive Interfaces verschicken keine OSPF Pakete. Alle Interfaces die nicht an d
 router ospf 10
 passive-interface loopback 0
 ```
+
+## Default Route
+Um eine Default Router über OSPF zu Routen sind folgende Schritte nötig:
+
+```ios
+// 1. Anlegen einer Default Route
+ip route 0.0.0.0 0.0.0.0 s0/0/0
+
+// 2. Eintragen der Route im OSPF Router
+router ospf 10
+default-information originate
+```
