@@ -42,6 +42,13 @@ Zyklen bis zum Overvlow / 2 = Zeitspanne in MHz
 ```
 
 ## Timer Konfiguration
+Zu aller erst müssen die Globalen Interrupts und Timer Interrupts aktiviert werden
+
+```c
+sei();
+TIMSK = (1<<TOIE0);
+```
+
 Um den Timer zu Konfigurieren steht das 8-Bit Timer0 Register `TCCR0` zur Verfügung.
 Dieses wird mit den Prescalern `CS02	CS01	CS00` bestückt.
 
