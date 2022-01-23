@@ -62,3 +62,20 @@ CS02	|CS01	|CS00|	Bedeutung
 1|	1|	1|	Vorteiler: Externer Takt vom Pin T0, steigende Flanke
 
 Im oben gezeigen `C` Beispiel wird der Prescaler auf `1` gesetzt.
+
+## Timer Preload Berechnen
+
+In manchen Fällen verzögert der Prescaler den Timer zu lange um auf das genünschte Ergebnis zu kommen.
+Dem kann mit einem Timer Preload entgegengekommen werden.
+Dazu muss der Preload im Register `TCNT0` gespeichert werden.
+
+Berechnet wird der Preload mit folgender Formel:
+> Für einen 8-Bit Timer
+```console
+Startwert = 256 - (Takt * Verzögerungszeit / Prescaller)
+```
+
+Beispiel für 8-Bit Timer mit Prescaler von 265 und 250ms Verzögerung:
+```console
+preload = 265 - (16000000 * 250 / 256) = 15625
+```
