@@ -50,10 +50,9 @@ Da Views auch verschachtelt werden können, gibt es die Möglichkeit die `WITH C
 
 Mit der `WITH LOCAL CHECK OPTION` Option werden nur Bedingungen in der Aufgerufenen View beachtet. Mit der `WITH CASCADED CHECK OPTION` Option dagegen werden alle Bedingungen aller verschachtelten Views beachtet.
 
-**Algorithm**
+### Algorithm
 Der Algorithmus Parameter bestimmt wie die View beim Aufruf durch MySQL verarbeitet werden soll.
 Zur Auswahl stehen `MERGE`, `TEMPTABLE` und `UNDEFINDE`.
-
 Syntax:
 ```SQL
 CREATE [OR REPLACE][ALGORITHM = {MERGE | TEMPTABLE | UNDEFINED}] VIEW 
@@ -61,6 +60,48 @@ CREATE [OR REPLACE][ALGORITHM = {MERGE | TEMPTABLE | UNDEFINED}] VIEW
 AS 
    select-statement;
 ```
+Bei einem **Merge** Aufruf wird der Query String vor dem Ausführen auf der Datenbank vereinfacht.
+
+Aus der View
+```SQL
+CREATE ALGORITHM=MERGE VIEW contactPersons(
+    customerName, 
+    firstName, 
+    lastName, 
+    phone
+) AS
+SELECT 
+    customerName, 
+    contactFirstName, 
+    contactLastName, 
+    phone
+FROM customers;
+```
+mit dem SQL Query Aufruf
+```SQL
+SELECT * FROM contactPersons
+WHERE customerName LIKE '%Co%';
+```
+werden die Parameter und der Tabellenname angepasst und eine `WHERE` Klausel angefügt (falls vorhanden).
+Das follständige Query sieht dann so aus:
+```SQL
+SELECT 
+    customerName, 
+    contactFirstName, 
+    contactLastName, 
+    phone
+FROM
+    customers
+WHERE
+    customerName LIKE '%Co%';
+```
+
+Der **Temptable** Algorithmus erstellt eine Temporäre Tabelle aufder der `SELECT` Query dann aufgeführt wird.
+Dies ist weniger Effizient. Auf solch eine View kann auch kein `UPDATE` Query angewendet werden.
+Einziger Vorteil ist, das sich durch die Temporäre Tabelle der Lock Dauer auf die Datenbank veringert.
+
+**Undefined** Beschreibt die Standardauswahl von MySQL, sollte kein Alorithmus angegeben werden.
+Dabei verwendet MySQL den bevorzugten **Merge** Algorithmus.
 
 ### Views Entfernen
 Syntax:
