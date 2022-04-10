@@ -98,7 +98,7 @@ WHERE
 
 Der **Temptable** Algorithmus erstellt eine Temporäre Tabelle aufder der `SELECT` Query dann aufgeführt wird.
 Dies ist weniger Effizient. Auf solch eine View kann auch kein `UPDATE` Query angewendet werden.
-Einziger Vorteil ist, das sich durch die Temporäre Tabelle der Lock Dauer auf die Datenbank veringert.
+Einziger Vorteil ist, dass sich durch die Temporäre Tabelle die Lock Dauer auf die Datenbank veringert.
 
 **Undefined** Beschreibt die Standardauswahl von MySQL, sollte kein Alorithmus angegeben werden.
 Dabei verwendet MySQL den bevorzugten **Merge** Algorithmus.
