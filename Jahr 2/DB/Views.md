@@ -19,7 +19,7 @@ INNER JOIN
 
 ## Vor und Nachteile von Views
 **Pro:**
-1. Komplexe SQL Queries können in Views gespeichert werden somit kann der erneute Aufruf verinfacht werden.
+1. Komplexe SQL Queries können in Views gespeichert werden somit kann der erneute Aufruf vereinfacht werden.
 1. Business Logik zentralisieren, greifen mehrere Programme auf die gleiche Datenbank zu und benötigen die selben Daten. So kann eine View dabei helfen die Queries Programmübergreifend konsistent zu halten.
 1. Zugriffsbeschränkung man kann einem Benutzer gestatten nur die View ausführen zu können, somit ist dieser nicht in der Lage andere Informationen aus der Datenbank zu extrahieren.
 1. Bei Schemaänderungen kann eine View mit dem alten Namen der Tabelle erstellt werden, somit funktionieren Queries die auf das alte Schema referenzieren noch.
@@ -96,9 +96,9 @@ WHERE
     customerName LIKE '%Co%';
 ```
 
-Der **Temptable** Algorithmus erstellt eine Temporäre Tabelle aufder der `SELECT` Query dann aufgeführt wird.
-Dies ist weniger Effizient. Auf solch eine View kann auch kein `UPDATE` Query angewendet werden.
-Einziger Vorteil ist, dass sich durch die Temporäre Tabelle die Lock Dauer auf die Datenbank veringert.
+Der **Temptable** Algorithmus erstellt eine temporäre Tabelle auf der der `SELECT` Query dann aufgeführt wird.
+Dies ist weniger effizient. Auf solch eine View kann auch kein `UPDATE` Query angewendet werden.
+Einziger Vorteil ist, dass sich durch die temporäre Tabelle die Lock Dauer auf die Datenbank verringert.
 
 **Undefined** Beschreibt die Standardauswahl von MySQL, sollte kein Alorithmus angegeben werden.
 Dabei verwendet MySQL den bevorzugten **Merge** Algorithmus.
