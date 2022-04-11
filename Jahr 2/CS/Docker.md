@@ -346,3 +346,34 @@ Es existieren auch noch einige andere Netzwermodelle, diese können [hier](https
 > Übersicht Overlay Netzwerke: https://docs.docker.com/network/overlay/
 >
 > Beispielkonfiguration: https://docs.docker.com/network/network-tutorial-overlay/
+
+
+## Container Orchestrierung
+Mit Container Orchistration lassen sich die Container in Clustern organisieren. In diesem Modus wird ein Cluster aus mehreren Containern einer Anwendung erstellt.
+Dieses Cluster ist dank Hostübergreifenden Netzwerk und Speicher in der lage eine Hochverfügbare Clusterumgebung zu schaffen.
+
+<img src="container_orchestration.png" width="70%">
+
+In dieser konstelation ist der einzelne Container nicht mehr von großer bedeutung, dieser kann durch die Beachtung der [12 Faktoren](https://12factor.net) einer Cloud Anwendung.
+Im Laufenden betrieb ohne störungen zu verursachen ausgetauscht werden.
+
+Ein kleiner Überklich über die wichtigesten Eigenschaften einer Cloud Nativen Anwendung.
+1. Die Anwendung selbst darf keinen Status im Arbeitsspeicher halten.
+1. Persistente Daten dürfen nicht im Container gespeichert werden.
+1. Die Konfguration der Anwendung erfolgt über Umgebungsvariablen oder zentralisiertem Konfigurationsmanagenemt.
+1. Persistente Daten werden nur in Datenbanken gespeichert.
+1. Container mit Persistenten Daten speichern diese in Volumes.
+1. Volumes werden nicht auf dem Pod gespeichert sondern auf zentralisierten Storage Systemen z.B. S3 oder Ceph
+
+Somit lassen sich im Live Betrieb wartungen und aktualisierungen durchführen, die die Verfübgarkeit der Anwendung in keinster weise beeinträchtigen.
+
+Vielmehr lassen sich in einem solchen Cluster auch ganze Update oder Change Prozesse einbinden.
+Durch die eingebaute Versionierung in die Container Images ist es möglich. Das Cluster in Production, Staging, Test und Development zu unterteilen und entsprechend den eingehenden Traffic an die gewünschten stellen zu Routen.
+Hierdurch lässt sich der Grundgedanke von continuous deployment sehr gut umsetzen.
+
+Verbreitete Container Orchestration Tools: 
+- Kubernetes
+- RedHad OpenShift
+- Apache Mesos
+- HashiCorp Nomad
+- Docker Swarm
