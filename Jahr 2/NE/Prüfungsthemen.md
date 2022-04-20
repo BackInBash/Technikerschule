@@ -4,7 +4,7 @@
 
 + RIPv1 / RIPv2 unterschiede
 + Dynamische Routing Protokolle (Link-State, Distance Vector)
-+ DHCP Snooping, DHCP Starvation, DHCP Spoofing, DHCP Rogueing, Brute Force, MAC-Adressen Überlauf
++ DHCP Snooping, DHCP Starvation, DHCP Rogueing, Brute Force, MAC-Adressen Überlauf
 + Von Host Adresse, netz und brodcast Adresse ermitteln
 + Subnetting IPv4
 + Subnettung IPv6
