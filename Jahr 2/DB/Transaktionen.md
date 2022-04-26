@@ -1,4 +1,4 @@
-# MySQL Transaktionen
+# SQL Transaktionen
 SQL Transaktionen bilden einen Verbund aus mehreren SQL-Statements, die in direktem Zusammenhang stehen.
 Beispielsweise bei einer Bestellung hier wäre es von Nöten, Einträge in der Tabelle, Bestellungen und Produkte zu erstellen.
 
@@ -69,3 +69,36 @@ Um dies abzuschalten, muss in einer Transaktion das folgende Statement enthalten
 ```sql
 SET AUTOCOMMIT OFF;
 ```
+
+## Isolations Level
+Das Isolationslevel hat keine Auswirkung auf die Sperrung der Datenbank, die durch die eigene Transaktion verursacht wurde.
+Vielmehr legt es das Verhalten fest, wie auf andere laufende Transaktionen reagiert werden soll.
+
+So ist z. B. bei dem Isolationslevel `READ UNCOMMITTED` ganz egal, ob die von einer anderen Transaktion gerade bearbeitete Tabelle noch nicht vollständig beschrieben ist. So wird die Transaktion dennoch ausgeführt es kann hier unter Umständen zu Inkonsistenten kommen.
+Dies wird auch als `dirty read` bezeichnet.
+
+Im Gegenzug werden aber nicht viele Systemressourcen benötigt, da weder ein Lock noch eine revisionssichere Verarbeitung nötig ist.
+
+Dieses Isolationslevel sollte daher nicht eingesetzt werden, höchstens bei Daten, deren Konsistenz keine Priorität haben.
+
+`READ COMMITTED` gibt, an das nur Daten verarbeitet werden können, die momentan nicht von anderen Transaktionen verwendet werden.
+Dabei versucht die Datenbank nur so wenig Entitäten wie nötig zu sperren.
+
+Dies geschieht mit einer Mischung aus Index und Row Locks. Hintergrund ist, dass es ansonsten zu Phantom Einträgen in der Datenbank können könnte. Beider neue Datensätze zwischen den in der Transaktion angefragten Datensätze eingeschleust werden könnten.
+Somit wären dann in zwei zeitlich voneinander getrennten SELECT Statements jeweils zwei unterschiedliche Datensätze zurückgegeben worden.
+
+Bei `UPDATE` und `DELETE` Statements werden die Locks auf die Datenbank durch die parallele Auswertung der `WHERE` Klausel neben der Ausführung des Queries reduziert indem nicht zu bearbeitende Entitäten werden wieder freigegeben.
+Dies hat den Hintergrund, die Wahrscheinlichkeit von Deadlocks zu verringern.
+
+Deadlocks treten auf, wenn zwei Transaktionen auf den Abschluss der jeweils anderen Transaktion warten. Da dies aber nicht eintreten wird, da sich die beiden Transaktionen gegenseitig sperren, spricht man in diesem Zusammenhang von einem Deadlock.
+
+Bei `REPEATABLE READ` werden nur die Datensätze gesperrt, die durch eine eindeutige Suche dem Statement zugeordnet werden können.
+
+Bei der `SERIALIZABLE` Isolationsstufe können keine Daten gelesen werden, für die noch ein Commit Statement aussteht, auch können andere Transaktionen erst auf die Daten zugreifen, wenn die aktuelle Transaktion vollständig abgeschlossen ist.
+
+Isolationsstufe	|Dirty Read|	Non-Repeatable Read	|Phantom
+|--|--|--|--|
+Read Uncommitted|	Ja|	Ja|	Ja
+Read Committed|	Nein	|Ja|	Ja
+Repeatable Read|	Nein|	Nein|	Ja
+Serializable	|Nein	|Nein	|Nein
