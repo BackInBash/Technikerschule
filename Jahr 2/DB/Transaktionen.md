@@ -135,6 +135,9 @@ Bei `REPEATABLE READ` werden nur die Datensätze gesperrt, die durch eine eindeu
 
 Bei der `SERIALIZABLE` Isolationsstufe können keine Daten gelesen werden, für die noch ein Commit Statement aussteht, auch können andere Transaktionen erst auf die Daten zugreifen, wenn die aktuelle Transaktion vollständig abgeschlossen ist.
 
+
+Eine Übersicht der einzelnen Isolationsstufen und deren Eigenschaften:
+
 Isolationsstufe	|Dirty Read|	Non-Repeatable Read	|Phantom
 |--|--|--|--|
 Read Uncommitted|	Ja|	Ja|	Ja
