@@ -66,7 +66,7 @@ ROLLBACK xyz;
 ```
 
 
-**JDBC Implementierung**
+**Java JDBC Implementierung**
 
 ```java
 public static void executeTransaction(Connection con) {
@@ -104,13 +104,40 @@ public static void executeTransaction(Connection con) {
 }
 ```
 
+**Pure SQL Implementierung**
+
+```sql
+START TRANSACTION;
+
+SET AUTOCOMMIT = OFF;
+
+SELECT 
+    @categoryID:=MAX(CategoryID)+1
+FROM
+    categories;
+
+INSERT INTO categories
+    (CategoryID, CategoryName, Description)
+VALUES
+    (@categoryID, 'Sweets', 'Desserts and candies');
+
+SAVEPOINT s_category;
+
+INSERT INTO products
+    (ProductName, SupplierID, CategoryID, QuantityPerUnit, UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel, Discontinued)
+VALUES
+    ('Lakritz', 14, 3, 10, 1.2, 100, 0, 10, 0);
+
+COMMIT;
+```
+
 ## Optionen
 
 Die bei MySQL als Standard gesetzte Option `AUTOCOMMIT` speichert nach erfolgreicher Ausführung der Transaktion die Daten in der Datenbank persistent ab.
 
 Um dies abzuschalten, muss in einer Transaktion das folgende Statement enthalten sein, damit wird es nötig, das speichern der Daten manuell zu veranlassen.
 ```sql
-SET AUTOCOMMIT OFF;
+SET AUTOCOMMIT = OFF;
 ```
 
 ## Isolations Level
