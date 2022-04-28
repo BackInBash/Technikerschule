@@ -24,10 +24,14 @@ Transaktionen sind **dauerhaft**, sie speichern Daten nach erfolgreicher Ausfüh
 
 1. Ausführen der SQL Statements
     ```sql
-    SELECT 
-        @orderNumber:=MAX(orderNUmber)+1
-    FROM
-        orders;
+    SELECT
+        CompanyName
+    FROM 
+        products p, suppliers s
+    WHERE 
+        p.SupplierID = s.SupplierID
+    AND 
+        p.ProductID = 14;
     ```
 
 1. Abschliesen der Transaktion
@@ -71,12 +75,12 @@ public static void executeTransaction(Connection con) {
     */
     try(Statement stmt = con.createStatement();) {
         con.setAutoCommit(false);
-        stmt.executeUpdate("INSERT INTO Production.ScrapReason(Name) VALUES('Correct width')");
+        stmt.executeUpdate("INSERT INTO categories(CategoryID, CategoryName, Description) VALUES(3, 'Sweets', 'Desserts and candies')");
         /*
             Create Savepoint
         */
         Savepoint save = con.setSavepoint();
-        stmt.executeUpdate("INSERT INTO Production.ScrapReason(Name) VALUES('Wrong width')");
+        stmt.executeUpdate("INSERT INTO products(ProductName, SupplierID, CategoryID, QuantityPerUnit, UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel, Discontinued) VALUES('Lakritz', 14, 3, 10, 1.2, 100, 0, 10, 0)");
         /*
             Rollback Changes to Savepoint
         */
